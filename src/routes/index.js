@@ -8,6 +8,7 @@ import cartRoutes from './cart.routes.js';
 import orderRoutes from './order.routes.js';
 import searchRoutes from './search.routes.js';
 import intentRoutes from './intent.routes.js';
+import recommendationRoutes from './recommendation.routes.js';
 
 const router = express.Router();
 
@@ -20,7 +21,8 @@ router.use('/cart', cartRoutes);
 router.use('/orders', orderRoutes);
 router.use('/search', searchRoutes);
 router.use('/intent', intentRoutes);
+router.use('/recommendations', recommendationRoutes);
 
-// We will add recommendation and analytics routes here later
+// We will add analytics routes here later
 
 export default router;
