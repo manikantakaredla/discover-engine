@@ -4,12 +4,12 @@ import { logger } from '../config/logger.js';
 
 const SEED_PRODUCTS = [
   {
-    "title": "Aero Stride Pack",
-    "description": "High quality pack designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Hyper Stride Band",
+    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Stride",
     "category": "Running Shoes",
-    "price": 161.69,
-    "stock": 188,
+    "price": 138.17,
+    "stock": 124,
     "images": [
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
     ],
@@ -19,28 +19,6 @@ const SEED_PRODUCTS = [
       "fitness",
       "athletic",
       "marathon",
-      "aero"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Hyper Velocity Socks",
-    "description": "High quality socks designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Velocity",
-    "category": "Activewear",
-    "price": 68.92,
-    "stock": 120,
-    "images": [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
-    ],
-    "tags": [
-      "shirt",
-      "workout",
-      "gym",
-      "tee",
       "hyper"
     ],
     "attributes": {
@@ -49,12 +27,34 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Smart Aura Monitor",
-    "description": "High quality monitor designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Advanced Velocity Band",
+    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Velocity",
+    "category": "Activewear",
+    "price": 127.66,
+    "stock": 143,
+    "images": [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
+    ],
+    "tags": [
+      "shirt",
+      "workout",
+      "gym",
+      "tee",
+      "advanced"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Advanced Aura Tights",
+    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Aura",
     "category": "Activewear",
-    "price": 132.01,
-    "stock": 164,
+    "price": 146.03,
+    "stock": 75,
     "images": [
       "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80"
     ],
@@ -63,7 +63,7 @@ const SEED_PRODUCTS = [
       "tights",
       "recovery",
       "gym",
-      "smart"
+      "advanced"
     ],
     "attributes": {
       "color": "Black",
@@ -71,12 +71,12 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Elite Aqua Tee",
-    "description": "High quality tee designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Elite Aqua Shorts",
+    "description": "High quality shorts designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Aqua",
     "category": "Accessories",
-    "price": 31.48,
-    "stock": 67,
+    "price": 83.1,
+    "stock": 66,
     "images": [
       "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
     ],
@@ -93,11 +93,189 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Performance Pulse Tee",
-    "description": "High quality tee designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Aero Pulse Tights",
+    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Pulse",
     "category": "Electronics",
-    "price": 140.11,
+    "price": 126.7,
+    "stock": 94,
+    "images": [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
+    ],
+    "tags": [
+      "watch",
+      "fitness",
+      "tracker",
+      "gps",
+      "electronics",
+      "aero"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Dynamic Flex Tights",
+    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Flex",
+    "category": "Accessories",
+    "price": 137.22,
+    "stock": 28,
+    "images": [
+      "https://images.unsplash.com/photo-1598266663412-7bb88e634794?w=800&q=80"
+    ],
+    "tags": [
+      "bands",
+      "resistance",
+      "gym",
+      "home",
+      "dynamic"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Advanced Trek Runner",
+    "description": "High quality runner designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Trek",
+    "category": "Running Shoes",
+    "price": 143.93,
+    "stock": 171,
+    "images": [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80"
+    ],
+    "tags": [
+      "trail",
+      "hiking",
+      "outdoor",
+      "shoes",
+      "advanced"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Dynamic Active Marathon Kicks",
+    "description": "High quality marathon kicks designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Active",
+    "category": "Accessories",
+    "price": 125.03,
+    "stock": 104,
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
+    ],
+    "tags": [
+      "bag",
+      "duffel",
+      "gym",
+      "travel",
+      "dynamic"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Ultra Stride Tights",
+    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Stride",
+    "category": "Running Shoes",
+    "price": 40.31,
+    "stock": 158,
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
+    ],
+    "tags": [
+      "running",
+      "shoes",
+      "fitness",
+      "athletic",
+      "marathon",
+      "ultra"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Elite Velocity Trail Shoes",
+    "description": "High quality trail shoes designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Velocity",
+    "category": "Activewear",
+    "price": 84.23,
+    "stock": 74,
+    "images": [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
+    ],
+    "tags": [
+      "shirt",
+      "workout",
+      "gym",
+      "tee",
+      "elite"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Elite Aura Tee",
+    "description": "High quality tee designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Aura",
+    "category": "Activewear",
+    "price": 24.35,
+    "stock": 183,
+    "images": [
+      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80"
+    ],
+    "tags": [
+      "compression",
+      "tights",
+      "recovery",
+      "gym",
+      "elite"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Prime Aqua Marathon Kicks",
+    "description": "High quality marathon kicks designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Aqua",
+    "category": "Accessories",
+    "price": 118.49,
+    "stock": 25,
+    "images": [
+      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
+    ],
+    "tags": [
+      "water",
+      "bottle",
+      "hydration",
+      "accessories",
+      "prime"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Smart Pulse Tights",
+    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Pulse",
+    "category": "Electronics",
+    "price": 63.3,
     "stock": 139,
     "images": [
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
@@ -108,161 +286,6 @@ const SEED_PRODUCTS = [
       "tracker",
       "gps",
       "electronics",
-      "performance"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Dynamic Flex Flask",
-    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Flex",
-    "category": "Accessories",
-    "price": 41.05,
-    "stock": 67,
-    "images": [
-      "https://images.unsplash.com/photo-1598266663412-7bb88e634794?w=800&q=80"
-    ],
-    "tags": [
-      "bands",
-      "resistance",
-      "gym",
-      "home",
-      "dynamic"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Performance Trek Tee",
-    "description": "High quality tee designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Trek",
-    "category": "Running Shoes",
-    "price": 107.35,
-    "stock": 198,
-    "images": [
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80"
-    ],
-    "tags": [
-      "trail",
-      "hiking",
-      "outdoor",
-      "shoes",
-      "performance"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Performance Active Band",
-    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Active",
-    "category": "Accessories",
-    "price": 76.82,
-    "stock": 151,
-    "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
-    ],
-    "tags": [
-      "bag",
-      "duffel",
-      "gym",
-      "travel",
-      "performance"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Dynamic Stride Socks",
-    "description": "High quality socks designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Stride",
-    "category": "Running Shoes",
-    "price": 32.24,
-    "stock": 176,
-    "images": [
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
-    ],
-    "tags": [
-      "running",
-      "shoes",
-      "fitness",
-      "athletic",
-      "marathon",
-      "dynamic"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Ultra Velocity Shorts",
-    "description": "High quality shorts designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Velocity",
-    "category": "Activewear",
-    "price": 122.57,
-    "stock": 44,
-    "images": [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
-    ],
-    "tags": [
-      "shirt",
-      "workout",
-      "gym",
-      "tee",
-      "ultra"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Ultra Aura Pack",
-    "description": "High quality pack designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Aura",
-    "category": "Activewear",
-    "price": 159.7,
-    "stock": 198,
-    "images": [
-      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80"
-    ],
-    "tags": [
-      "compression",
-      "tights",
-      "recovery",
-      "gym",
-      "ultra"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Smart Aqua Tights",
-    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Aqua",
-    "category": "Accessories",
-    "price": 123.34,
-    "stock": 125,
-    "images": [
-      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
-    ],
-    "tags": [
-      "water",
-      "bottle",
-      "hydration",
-      "accessories",
       "smart"
     ],
     "attributes": {
@@ -271,35 +294,12 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Smart Pulse Band",
-    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Pulse",
-    "category": "Electronics",
-    "price": 150.95,
-    "stock": 191,
-    "images": [
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
-    ],
-    "tags": [
-      "watch",
-      "fitness",
-      "tracker",
-      "gps",
-      "electronics",
-      "smart"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Aero Flex Runner",
-    "description": "High quality runner designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Elite Flex Flask",
+    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Flex",
     "category": "Accessories",
-    "price": 101.72,
-    "stock": 12,
+    "price": 55.65,
+    "stock": 141,
     "images": [
       "https://images.unsplash.com/photo-1598266663412-7bb88e634794?w=800&q=80"
     ],
@@ -308,317 +308,6 @@ const SEED_PRODUCTS = [
       "resistance",
       "gym",
       "home",
-      "aero"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Essential Trek Jacket",
-    "description": "High quality jacket designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Trek",
-    "category": "Running Shoes",
-    "price": 111.2,
-    "stock": 18,
-    "images": [
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80"
-    ],
-    "tags": [
-      "trail",
-      "hiking",
-      "outdoor",
-      "shoes",
-      "essential"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Aero Active Pack",
-    "description": "High quality pack designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Active",
-    "category": "Accessories",
-    "price": 116.83,
-    "stock": 106,
-    "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
-    ],
-    "tags": [
-      "bag",
-      "duffel",
-      "gym",
-      "travel",
-      "aero"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Prime Stride Socks",
-    "description": "High quality socks designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Stride",
-    "category": "Running Shoes",
-    "price": 168.86,
-    "stock": 135,
-    "images": [
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
-    ],
-    "tags": [
-      "running",
-      "shoes",
-      "fitness",
-      "athletic",
-      "marathon",
-      "prime"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Prime Velocity Shorts",
-    "description": "High quality shorts designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Velocity",
-    "category": "Activewear",
-    "price": 38.58,
-    "stock": 155,
-    "images": [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
-    ],
-    "tags": [
-      "shirt",
-      "workout",
-      "gym",
-      "tee",
-      "prime"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Dynamic Aura Pack",
-    "description": "High quality pack designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Aura",
-    "category": "Activewear",
-    "price": 83.95,
-    "stock": 170,
-    "images": [
-      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80"
-    ],
-    "tags": [
-      "compression",
-      "tights",
-      "recovery",
-      "gym",
-      "dynamic"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Performance Aqua Tee",
-    "description": "High quality tee designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Aqua",
-    "category": "Accessories",
-    "price": 116.33,
-    "stock": 80,
-    "images": [
-      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
-    ],
-    "tags": [
-      "water",
-      "bottle",
-      "hydration",
-      "accessories",
-      "performance"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Pro Pulse Tee",
-    "description": "High quality tee designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Pulse",
-    "category": "Electronics",
-    "price": 124.88,
-    "stock": 57,
-    "images": [
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
-    ],
-    "tags": [
-      "watch",
-      "fitness",
-      "tracker",
-      "gps",
-      "electronics",
-      "pro"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Smart Flex Monitor",
-    "description": "High quality monitor designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Flex",
-    "category": "Accessories",
-    "price": 31.63,
-    "stock": 65,
-    "images": [
-      "https://images.unsplash.com/photo-1598266663412-7bb88e634794?w=800&q=80"
-    ],
-    "tags": [
-      "bands",
-      "resistance",
-      "gym",
-      "home",
-      "smart"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Prime Trek Pack",
-    "description": "High quality pack designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Trek",
-    "category": "Running Shoes",
-    "price": 60.53,
-    "stock": 50,
-    "images": [
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80"
-    ],
-    "tags": [
-      "trail",
-      "hiking",
-      "outdoor",
-      "shoes",
-      "prime"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Max Active Flask",
-    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Active",
-    "category": "Accessories",
-    "price": 83.71,
-    "stock": 13,
-    "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
-    ],
-    "tags": [
-      "bag",
-      "duffel",
-      "gym",
-      "travel",
-      "max"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Max Stride Band",
-    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Stride",
-    "category": "Running Shoes",
-    "price": 57.02,
-    "stock": 88,
-    "images": [
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
-    ],
-    "tags": [
-      "running",
-      "shoes",
-      "fitness",
-      "athletic",
-      "marathon",
-      "max"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Pro Velocity Shorts",
-    "description": "High quality shorts designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Velocity",
-    "category": "Activewear",
-    "price": 130.52,
-    "stock": 194,
-    "images": [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
-    ],
-    "tags": [
-      "shirt",
-      "workout",
-      "gym",
-      "tee",
-      "pro"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Cloud Aura Flask",
-    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Aura",
-    "category": "Activewear",
-    "price": 149.63,
-    "stock": 23,
-    "images": [
-      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80"
-    ],
-    "tags": [
-      "compression",
-      "tights",
-      "recovery",
-      "gym",
-      "cloud"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Elite Aqua Band",
-    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Aqua",
-    "category": "Accessories",
-    "price": 67.48,
-    "stock": 81,
-    "images": [
-      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
-    ],
-    "tags": [
-      "water",
-      "bottle",
-      "hydration",
-      "accessories",
       "elite"
     ],
     "attributes": {
@@ -627,236 +316,13 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Advanced Pulse Tights",
-    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Pulse",
-    "category": "Electronics",
-    "price": 160.16,
-    "stock": 198,
-    "images": [
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
-    ],
-    "tags": [
-      "watch",
-      "fitness",
-      "tracker",
-      "gps",
-      "electronics",
-      "advanced"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Prime Flex Tights",
-    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Flex",
-    "category": "Accessories",
-    "price": 105.06,
-    "stock": 131,
-    "images": [
-      "https://images.unsplash.com/photo-1598266663412-7bb88e634794?w=800&q=80"
-    ],
-    "tags": [
-      "bands",
-      "resistance",
-      "gym",
-      "home",
-      "prime"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Elite Trek Tee",
-    "description": "High quality tee designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Aero Trek Pack",
+    "description": "High quality pack designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Trek",
     "category": "Running Shoes",
-    "price": 118.79,
-    "stock": 106,
-    "images": [
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80"
-    ],
-    "tags": [
-      "trail",
-      "hiking",
-      "outdoor",
-      "shoes",
-      "elite"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Aero Active Runner",
-    "description": "High quality runner designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Active",
-    "category": "Accessories",
-    "price": 119.43,
-    "stock": 43,
-    "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
-    ],
-    "tags": [
-      "bag",
-      "duffel",
-      "gym",
-      "travel",
-      "aero"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Prime Stride Tights",
-    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Stride",
-    "category": "Running Shoes",
-    "price": 115.39,
-    "stock": 46,
-    "images": [
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
-    ],
-    "tags": [
-      "running",
-      "shoes",
-      "fitness",
-      "athletic",
-      "marathon",
-      "prime"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Smart Velocity Flask",
-    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Velocity",
-    "category": "Activewear",
-    "price": 26.44,
+    "price": 133.41,
     "stock": 52,
     "images": [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
-    ],
-    "tags": [
-      "shirt",
-      "workout",
-      "gym",
-      "tee",
-      "smart"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Max Aura Monitor",
-    "description": "High quality monitor designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Aura",
-    "category": "Activewear",
-    "price": 33.14,
-    "stock": 136,
-    "images": [
-      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80"
-    ],
-    "tags": [
-      "compression",
-      "tights",
-      "recovery",
-      "gym",
-      "max"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Dynamic Aqua Flask",
-    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Aqua",
-    "category": "Accessories",
-    "price": 52.65,
-    "stock": 120,
-    "images": [
-      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
-    ],
-    "tags": [
-      "water",
-      "bottle",
-      "hydration",
-      "accessories",
-      "dynamic"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Performance Pulse Shorts",
-    "description": "High quality shorts designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Pulse",
-    "category": "Electronics",
-    "price": 21.4,
-    "stock": 154,
-    "images": [
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
-    ],
-    "tags": [
-      "watch",
-      "fitness",
-      "tracker",
-      "gps",
-      "electronics",
-      "performance"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Ultra Flex Shorts",
-    "description": "High quality shorts designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Flex",
-    "category": "Accessories",
-    "price": 20.27,
-    "stock": 63,
-    "images": [
-      "https://images.unsplash.com/photo-1598266663412-7bb88e634794?w=800&q=80"
-    ],
-    "tags": [
-      "bands",
-      "resistance",
-      "gym",
-      "home",
-      "ultra"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Hyper Trek Shorts",
-    "description": "High quality shorts designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Trek",
-    "category": "Running Shoes",
-    "price": 138.75,
-    "stock": 51,
-    "images": [
       "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80"
     ],
     "tags": [
@@ -864,7 +330,7 @@ const SEED_PRODUCTS = [
       "hiking",
       "outdoor",
       "shoes",
-      "hyper"
+      "aero"
     ],
     "attributes": {
       "color": "Black",
@@ -876,8 +342,8 @@ const SEED_PRODUCTS = [
     "description": "High quality shorts designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Active",
     "category": "Accessories",
-    "price": 76.38,
-    "stock": 118,
+    "price": 142.73,
+    "stock": 139,
     "images": [
       "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
     ],
@@ -894,12 +360,12 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Elite Stride Band",
-    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Advanced Stride Running Shoes",
+    "description": "High quality running shoes designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Stride",
     "category": "Running Shoes",
-    "price": 134.33,
-    "stock": 138,
+    "price": 27.06,
+    "stock": 192,
     "images": [
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
     ],
@@ -909,72 +375,6 @@ const SEED_PRODUCTS = [
       "fitness",
       "athletic",
       "marathon",
-      "elite"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Elite Velocity Tee",
-    "description": "High quality tee designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Velocity",
-    "category": "Activewear",
-    "price": 110.73,
-    "stock": 208,
-    "images": [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
-    ],
-    "tags": [
-      "shirt",
-      "workout",
-      "gym",
-      "tee",
-      "elite"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Smart Aura Tights",
-    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Aura",
-    "category": "Activewear",
-    "price": 27.66,
-    "stock": 207,
-    "images": [
-      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80"
-    ],
-    "tags": [
-      "compression",
-      "tights",
-      "recovery",
-      "gym",
-      "smart"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Advanced Aqua Flask",
-    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Aqua",
-    "category": "Accessories",
-    "price": 84.69,
-    "stock": 82,
-    "images": [
-      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
-    ],
-    "tags": [
-      "water",
-      "bottle",
-      "hydration",
-      "accessories",
       "advanced"
     ],
     "attributes": {
@@ -983,12 +383,78 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Advanced Pulse Tights",
-    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Smart Velocity Pack",
+    "description": "High quality pack designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Velocity",
+    "category": "Activewear",
+    "price": 118.57,
+    "stock": 196,
+    "images": [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
+    ],
+    "tags": [
+      "shirt",
+      "workout",
+      "gym",
+      "tee",
+      "smart"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Pro Aura Trail Shoes",
+    "description": "High quality trail shoes designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Aura",
+    "category": "Activewear",
+    "price": 131.18,
+    "stock": 85,
+    "images": [
+      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80"
+    ],
+    "tags": [
+      "compression",
+      "tights",
+      "recovery",
+      "gym",
+      "pro"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Max Aqua Pack",
+    "description": "High quality pack designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Aqua",
+    "category": "Accessories",
+    "price": 120.79,
+    "stock": 40,
+    "images": [
+      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
+    ],
+    "tags": [
+      "water",
+      "bottle",
+      "hydration",
+      "accessories",
+      "max"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Advanced Pulse Marathon Kicks",
+    "description": "High quality marathon kicks designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Pulse",
     "category": "Electronics",
-    "price": 109,
-    "stock": 63,
+    "price": 26.35,
+    "stock": 97,
     "images": [
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
     ],
@@ -1006,12 +472,12 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Advanced Flex Tee",
+    "title": "Smart Flex Tee",
     "description": "High quality tee designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Flex",
     "category": "Accessories",
-    "price": 29.02,
-    "stock": 164,
+    "price": 167.29,
+    "stock": 134,
     "images": [
       "https://images.unsplash.com/photo-1598266663412-7bb88e634794?w=800&q=80"
     ],
@@ -1020,7 +486,7 @@ const SEED_PRODUCTS = [
       "resistance",
       "gym",
       "home",
-      "advanced"
+      "smart"
     ],
     "attributes": {
       "color": "Black",
@@ -1028,12 +494,12 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Aero Trek Tights",
-    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Hyper Trek Trail Shoes",
+    "description": "High quality trail shoes designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Trek",
     "category": "Running Shoes",
-    "price": 139.48,
-    "stock": 89,
+    "price": 60.53,
+    "stock": 143,
     "images": [
       "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80"
     ],
@@ -1042,51 +508,6 @@ const SEED_PRODUCTS = [
       "hiking",
       "outdoor",
       "shoes",
-      "aero"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Advanced Active Tee",
-    "description": "High quality tee designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Active",
-    "category": "Accessories",
-    "price": 35.99,
-    "stock": 113,
-    "images": [
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
-    ],
-    "tags": [
-      "bag",
-      "duffel",
-      "gym",
-      "travel",
-      "advanced"
-    ],
-    "attributes": {
-      "color": "Black",
-      "size": "M"
-    }
-  },
-  {
-    "title": "Hyper Stride Band",
-    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
-    "brand": "Stride",
-    "category": "Running Shoes",
-    "price": 43.9,
-    "stock": 150,
-    "images": [
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
-    ],
-    "tags": [
-      "running",
-      "shoes",
-      "fitness",
-      "athletic",
-      "marathon",
       "hyper"
     ],
     "attributes": {
@@ -1095,12 +516,57 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Max Velocity Flask",
-    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Cloud Active Shorts",
+    "description": "High quality shorts designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Active",
+    "category": "Accessories",
+    "price": 126.25,
+    "stock": 25,
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
+    ],
+    "tags": [
+      "bag",
+      "duffel",
+      "gym",
+      "travel",
+      "cloud"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Pro Stride Band",
+    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Stride",
+    "category": "Running Shoes",
+    "price": 98.9,
+    "stock": 114,
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
+    ],
+    "tags": [
+      "running",
+      "shoes",
+      "fitness",
+      "athletic",
+      "marathon",
+      "pro"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Hyper Velocity Marathon Kicks",
+    "description": "High quality marathon kicks designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Velocity",
     "category": "Activewear",
-    "price": 21.25,
-    "stock": 93,
+    "price": 60,
+    "stock": 187,
     "images": [
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
     ],
@@ -1109,7 +575,7 @@ const SEED_PRODUCTS = [
       "workout",
       "gym",
       "tee",
-      "max"
+      "hyper"
     ],
     "attributes": {
       "color": "Black",
@@ -1117,12 +583,12 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Performance Aura Band",
-    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Performance Aura Shorts",
+    "description": "High quality shorts designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Aura",
     "category": "Activewear",
-    "price": 145.16,
-    "stock": 87,
+    "price": 91.55,
+    "stock": 52,
     "images": [
       "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80"
     ],
@@ -1139,12 +605,12 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Elite Aqua Runner",
-    "description": "High quality runner designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Cloud Aqua Tights",
+    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Aqua",
     "category": "Accessories",
-    "price": 159.3,
-    "stock": 180,
+    "price": 75.64,
+    "stock": 56,
     "images": [
       "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
     ],
@@ -1153,7 +619,7 @@ const SEED_PRODUCTS = [
       "bottle",
       "hydration",
       "accessories",
-      "elite"
+      "cloud"
     ],
     "attributes": {
       "color": "Black",
@@ -1161,12 +627,12 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Performance Pulse Tights",
-    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Hyper Pulse Trail Shoes",
+    "description": "High quality trail shoes designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Pulse",
     "category": "Electronics",
-    "price": 133.37,
-    "stock": 28,
+    "price": 56.57,
+    "stock": 20,
     "images": [
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
     ],
@@ -1176,7 +642,7 @@ const SEED_PRODUCTS = [
       "tracker",
       "gps",
       "electronics",
-      "performance"
+      "hyper"
     ],
     "attributes": {
       "color": "Black",
@@ -1184,12 +650,12 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Max Flex Flask",
-    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Essential Flex Shorts",
+    "description": "High quality shorts designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Flex",
     "category": "Accessories",
-    "price": 126.5,
-    "stock": 150,
+    "price": 20.79,
+    "stock": 83,
     "images": [
       "https://images.unsplash.com/photo-1598266663412-7bb88e634794?w=800&q=80"
     ],
@@ -1198,7 +664,7 @@ const SEED_PRODUCTS = [
       "resistance",
       "gym",
       "home",
-      "max"
+      "essential"
     ],
     "attributes": {
       "color": "Black",
@@ -1206,12 +672,12 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Smart Trek Jacket",
-    "description": "High quality jacket designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Essential Trek Band",
+    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Trek",
     "category": "Running Shoes",
-    "price": 151.49,
-    "stock": 194,
+    "price": 98.46,
+    "stock": 180,
     "images": [
       "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80"
     ],
@@ -1220,7 +686,7 @@ const SEED_PRODUCTS = [
       "hiking",
       "outdoor",
       "shoes",
-      "smart"
+      "essential"
     ],
     "attributes": {
       "color": "Black",
@@ -1228,12 +694,12 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Smart Active Socks",
-    "description": "High quality socks designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Dynamic Active Shorts",
+    "description": "High quality shorts designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Active",
     "category": "Accessories",
-    "price": 159.97,
-    "stock": 140,
+    "price": 150.21,
+    "stock": 131,
     "images": [
       "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
     ],
@@ -1242,7 +708,7 @@ const SEED_PRODUCTS = [
       "duffel",
       "gym",
       "travel",
-      "smart"
+      "dynamic"
     ],
     "attributes": {
       "color": "Black",
@@ -1250,11 +716,189 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Max Stride Tee",
-    "description": "High quality tee designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Advanced Stride Tights",
+    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Stride",
     "category": "Running Shoes",
-    "price": 36.71,
+    "price": 122.45,
+    "stock": 113,
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
+    ],
+    "tags": [
+      "running",
+      "shoes",
+      "fitness",
+      "athletic",
+      "marathon",
+      "advanced"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Cloud Velocity Tee",
+    "description": "High quality tee designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Velocity",
+    "category": "Activewear",
+    "price": 53.93,
+    "stock": 178,
+    "images": [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
+    ],
+    "tags": [
+      "shirt",
+      "workout",
+      "gym",
+      "tee",
+      "cloud"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Ultra Aura Band",
+    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Aura",
+    "category": "Activewear",
+    "price": 97.14,
+    "stock": 30,
+    "images": [
+      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80"
+    ],
+    "tags": [
+      "compression",
+      "tights",
+      "recovery",
+      "gym",
+      "ultra"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Prime Aqua Socks",
+    "description": "High quality socks designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Aqua",
+    "category": "Accessories",
+    "price": 101.69,
+    "stock": 95,
+    "images": [
+      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
+    ],
+    "tags": [
+      "water",
+      "bottle",
+      "hydration",
+      "accessories",
+      "prime"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Prime Pulse Monitor",
+    "description": "High quality monitor designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Pulse",
+    "category": "Electronics",
+    "price": 38.79,
+    "stock": 64,
+    "images": [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
+    ],
+    "tags": [
+      "watch",
+      "fitness",
+      "tracker",
+      "gps",
+      "electronics",
+      "prime"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Essential Flex Flask",
+    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Flex",
+    "category": "Accessories",
+    "price": 126.24,
+    "stock": 188,
+    "images": [
+      "https://images.unsplash.com/photo-1598266663412-7bb88e634794?w=800&q=80"
+    ],
+    "tags": [
+      "bands",
+      "resistance",
+      "gym",
+      "home",
+      "essential"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Essential Trek Flask",
+    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Trek",
+    "category": "Running Shoes",
+    "price": 164.94,
+    "stock": 90,
+    "images": [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80"
+    ],
+    "tags": [
+      "trail",
+      "hiking",
+      "outdoor",
+      "shoes",
+      "essential"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Dynamic Active Monitor",
+    "description": "High quality monitor designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Active",
+    "category": "Accessories",
+    "price": 32.31,
+    "stock": 76,
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
+    ],
+    "tags": [
+      "bag",
+      "duffel",
+      "gym",
+      "travel",
+      "dynamic"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Pro Stride Pack",
+    "description": "High quality pack designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Stride",
+    "category": "Running Shoes",
+    "price": 54.47,
     "stock": 153,
     "images": [
       "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
@@ -1265,7 +909,7 @@ const SEED_PRODUCTS = [
       "fitness",
       "athletic",
       "marathon",
-      "max"
+      "pro"
     ],
     "attributes": {
       "color": "Black",
@@ -1273,12 +917,190 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Hyper Velocity Runner",
-    "description": "High quality runner designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Prime Velocity Pack",
+    "description": "High quality pack designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Velocity",
     "category": "Activewear",
-    "price": 73.87,
-    "stock": 100,
+    "price": 133.94,
+    "stock": 60,
+    "images": [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
+    ],
+    "tags": [
+      "shirt",
+      "workout",
+      "gym",
+      "tee",
+      "prime"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Aero Aura Socks",
+    "description": "High quality socks designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Aura",
+    "category": "Activewear",
+    "price": 25.65,
+    "stock": 108,
+    "images": [
+      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80"
+    ],
+    "tags": [
+      "compression",
+      "tights",
+      "recovery",
+      "gym",
+      "aero"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Dynamic Aqua Pack",
+    "description": "High quality pack designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Aqua",
+    "category": "Accessories",
+    "price": 52.39,
+    "stock": 74,
+    "images": [
+      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
+    ],
+    "tags": [
+      "water",
+      "bottle",
+      "hydration",
+      "accessories",
+      "dynamic"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Hyper Pulse Flask",
+    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Pulse",
+    "category": "Electronics",
+    "price": 136.51,
+    "stock": 194,
+    "images": [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
+    ],
+    "tags": [
+      "watch",
+      "fitness",
+      "tracker",
+      "gps",
+      "electronics",
+      "hyper"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Ultra Flex Socks",
+    "description": "High quality socks designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Flex",
+    "category": "Accessories",
+    "price": 87.98,
+    "stock": 178,
+    "images": [
+      "https://images.unsplash.com/photo-1598266663412-7bb88e634794?w=800&q=80"
+    ],
+    "tags": [
+      "bands",
+      "resistance",
+      "gym",
+      "home",
+      "ultra"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Advanced Trek Jacket",
+    "description": "High quality jacket designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Trek",
+    "category": "Running Shoes",
+    "price": 124.92,
+    "stock": 176,
+    "images": [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80"
+    ],
+    "tags": [
+      "trail",
+      "hiking",
+      "outdoor",
+      "shoes",
+      "advanced"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Prime Active Band",
+    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Active",
+    "category": "Accessories",
+    "price": 79.87,
+    "stock": 132,
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
+    ],
+    "tags": [
+      "bag",
+      "duffel",
+      "gym",
+      "travel",
+      "prime"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Aero Stride Running Shoes",
+    "description": "High quality running shoes designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Stride",
+    "category": "Running Shoes",
+    "price": 139.78,
+    "stock": 18,
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
+    ],
+    "tags": [
+      "running",
+      "shoes",
+      "fitness",
+      "athletic",
+      "marathon",
+      "aero"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Hyper Velocity Running Shoes",
+    "description": "High quality running shoes designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Velocity",
+    "category": "Activewear",
+    "price": 98.23,
+    "stock": 209,
     "images": [
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
     ],
@@ -1295,12 +1117,12 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Smart Aura Band",
-    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Hyper Aura Shorts",
+    "description": "High quality shorts designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Aura",
     "category": "Activewear",
-    "price": 75.4,
-    "stock": 116,
+    "price": 89.81,
+    "stock": 109,
     "images": [
       "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80"
     ],
@@ -1309,7 +1131,7 @@ const SEED_PRODUCTS = [
       "tights",
       "recovery",
       "gym",
-      "smart"
+      "hyper"
     ],
     "attributes": {
       "color": "Black",
@@ -1317,12 +1139,12 @@ const SEED_PRODUCTS = [
     }
   },
   {
-    "title": "Advanced Aqua Flask",
-    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
+    "title": "Essential Aqua Trail Shoes",
+    "description": "High quality trail shoes designed for maximum performance and durability. Built with advanced materials.",
     "brand": "Aqua",
     "category": "Accessories",
-    "price": 78.3,
-    "stock": 88,
+    "price": 63.65,
+    "stock": 42,
     "images": [
       "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
     ],
@@ -1331,7 +1153,185 @@ const SEED_PRODUCTS = [
       "bottle",
       "hydration",
       "accessories",
+      "essential"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Essential Pulse Trail Shoes",
+    "description": "High quality trail shoes designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Pulse",
+    "category": "Electronics",
+    "price": 137.34,
+    "stock": 155,
+    "images": [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
+    ],
+    "tags": [
+      "watch",
+      "fitness",
+      "tracker",
+      "gps",
+      "electronics",
+      "essential"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Advanced Flex Running Shoes",
+    "description": "High quality running shoes designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Flex",
+    "category": "Accessories",
+    "price": 161.24,
+    "stock": 131,
+    "images": [
+      "https://images.unsplash.com/photo-1598266663412-7bb88e634794?w=800&q=80"
+    ],
+    "tags": [
+      "bands",
+      "resistance",
+      "gym",
+      "home",
       "advanced"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Prime Trek Runner",
+    "description": "High quality runner designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Trek",
+    "category": "Running Shoes",
+    "price": 65.51,
+    "stock": 70,
+    "images": [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&q=80"
+    ],
+    "tags": [
+      "trail",
+      "hiking",
+      "outdoor",
+      "shoes",
+      "prime"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Max Active Socks",
+    "description": "High quality socks designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Active",
+    "category": "Accessories",
+    "price": 90.88,
+    "stock": 191,
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80"
+    ],
+    "tags": [
+      "bag",
+      "duffel",
+      "gym",
+      "travel",
+      "max"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Aero Stride Band",
+    "description": "High quality band designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Stride",
+    "category": "Running Shoes",
+    "price": 117.67,
+    "stock": 141,
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
+    ],
+    "tags": [
+      "running",
+      "shoes",
+      "fitness",
+      "athletic",
+      "marathon",
+      "aero"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Hyper Velocity Tee",
+    "description": "High quality tee designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Velocity",
+    "category": "Activewear",
+    "price": 100.41,
+    "stock": 147,
+    "images": [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80"
+    ],
+    "tags": [
+      "shirt",
+      "workout",
+      "gym",
+      "tee",
+      "hyper"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Dynamic Aura Flask",
+    "description": "High quality flask designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Aura",
+    "category": "Activewear",
+    "price": 55.3,
+    "stock": 99,
+    "images": [
+      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=800&q=80"
+    ],
+    "tags": [
+      "compression",
+      "tights",
+      "recovery",
+      "gym",
+      "dynamic"
+    ],
+    "attributes": {
+      "color": "Black",
+      "size": "M"
+    }
+  },
+  {
+    "title": "Aero Aqua Tights",
+    "description": "High quality tights designed for maximum performance and durability. Built with advanced materials.",
+    "brand": "Aqua",
+    "category": "Accessories",
+    "price": 65.89,
+    "stock": 16,
+    "images": [
+      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
+    ],
+    "tags": [
+      "water",
+      "bottle",
+      "hydration",
+      "accessories",
+      "aero"
     ],
     "attributes": {
       "color": "Black",
