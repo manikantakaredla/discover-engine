@@ -1,4 +1,4 @@
-import { intentConfig } from '../../../../config/intent.config.js';
+import { intentConfig } from '../../../config/intent.config.js';
 
 export const applyTimeDecay = (score, timestamp) => {
   const now = Date.now();

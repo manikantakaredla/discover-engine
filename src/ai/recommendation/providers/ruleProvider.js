@@ -1,5 +1,5 @@
-import Product from '../../../../models/Product.model.js';
-import ProductGraph from '../../../../models/ProductGraph.model.js';
+import Product from '../../../models/Product.model.js';
+import ProductGraph from '../../../models/ProductGraph.model.js';
 
 export const fetchByIntentRules = async (intentName, categories, brands, limit = 20) => {
   // Mocking rule-based logic for DB querying

@@ -1,5 +1,5 @@
-import { INTENT_LIFECYCLE } from '../../../../constants/intentTypes.js';
-import { intentConfig } from '../../../../config/intent.config.js';
+import { INTENT_LIFECYCLE } from '../../../constants/intentTypes.js';
+import { intentConfig } from '../../../config/intent.config.js';
 
 export const determineState = (confidence, totalSignalsCount) => {
   if (totalSignalsCount === 0) return INTENT_LIFECYCLE.UNKNOWN;

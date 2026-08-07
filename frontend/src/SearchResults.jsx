@@ -143,7 +143,7 @@ export default function SearchResultsPage() {
 
     const fetchSearch = async () => {
       setIsLoading(true);
-      const data = await apiClient.post('/search', { query: decodedQuery, sessionId: 'demo-session-123' });
+      const data = await apiClient.post('/search/semantic', { query: decodedQuery, sessionId: 'demo-session-123' });
       
       if (data && data.candidates) {
         // Mock splitting semantic vs standard for UI demo purposes

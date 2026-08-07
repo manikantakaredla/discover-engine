@@ -1,4 +1,4 @@
-import Intent from '../../../../models/Intent.model.js';
+import Intent from '../../../models/Intent.model.js';
 
 export const fetchMemory = async (sessionId) => {
   let intentDoc = await Intent.findOne({ sessionId });

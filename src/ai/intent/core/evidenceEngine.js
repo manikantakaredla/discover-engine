@@ -1,6 +1,6 @@
 import { applyRules } from './ruleEngine.js';
 import { applyTimeDecay } from './decayEngine.js';
-import { intentWeights } from '../../../../config/intentWeights.js';
+import { intentWeights } from '../../../config/intentWeights.js';
 
 export const generateEvidence = (signals) => {
   const evidence = [];

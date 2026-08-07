@@ -1,5 +1,5 @@
-import ClickEvent from '../../../../models/ClickEvent.model.js';
-import SearchEvent from '../../../../models/SearchEvent.model.js';
+import ClickEvent from '../../../models/ClickEvent.model.js';
+import SearchEvent from '../../../models/SearchEvent.model.js';
 
 export const extractSignals = async (sessionId) => {
   const clickSignals = await ClickEvent.find({ session: sessionId, action: { $in: ['click', 'view'] } }).populate('product');

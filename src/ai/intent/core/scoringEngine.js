@@ -1,4 +1,4 @@
-import { INTENT_TYPES } from '../../../../constants/intentTypes.js';
+import { INTENT_TYPES } from '../../../constants/intentTypes.js';
 
 export const calculateScores = (evidenceList) => {
   const scores = {};

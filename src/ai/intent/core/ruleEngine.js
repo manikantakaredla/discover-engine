@@ -1,4 +1,4 @@
-import { INTENT_TYPES } from '../../../../constants/intentTypes.js';
+import { INTENT_TYPES } from '../../../constants/intentTypes.js';
 
 // Simple keyword/category rules for this version of the architecture
 const ruleMap = {

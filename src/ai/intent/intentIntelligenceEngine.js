@@ -8,7 +8,7 @@ import { determineState } from './core/stateEngine.js';
 import { buildTimeline } from './core/timelineEngine.js';
 import { calculateTransition } from './core/transitionEngine.js';
 import { fetchMemory } from './core/memoryEngine.js';
-import { intentConfig } from '../../../config/intent.config.js';
+import { intentConfig } from '../../config/intent.config.js';
 
 export const detectIntent = async (sessionId) => {
   // 1. Memory Engine
