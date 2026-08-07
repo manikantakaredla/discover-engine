@@ -16,7 +16,7 @@ export const executeRetrievalPipeline = async (rawQuery, intentContext) => {
 
   // 2. Vector Search (Two-Tower / FAISS)
   const searchStart = Date.now();
-  const rawCandidates = await searchVectorStore(queryContext.queryEmbedding);
+  const rawCandidates = await searchVectorStore(queryContext.queryEmbedding, rawQuery);
   vectorSearchTime = Date.now() - searchStart;
 
   // 3. Hybrid Re-Ranking

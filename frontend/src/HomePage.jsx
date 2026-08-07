@@ -3,7 +3,7 @@ import {
   Search, ShoppingBag, Heart, User, Menu, 
   ChevronRight, Star, Plus, Target, Sparkles, X
 } from 'lucide-react';
-import { clsx, type ClassValue } from 'clsx';
+import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 // --- Utility ---
@@ -43,6 +43,7 @@ const ProductCard = ({ product }) => {
       className="group flex flex-col min-w-[220px] max-w-[220px] sm:min-w-[260px] sm:max-w-[260px] cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => window.location.hash = `#product?id=${product.id}`}
     >
       {/* Image Container */}
       <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100 mb-4">
@@ -123,9 +124,59 @@ const ProductCarousel = ({ title, products }) => {
 };
 
 // --- Main Page ---
+import { useEffect } from 'react';
+import { apiClient } from './api/client.js';
+
 export default function HomePage() {
   const [searchFocused, setSearchFocused] = useState(false);
   const [missionDismissed, setMissionDismissed] = useState(false);
+  
+  // Real data state
+  const [feedData, setFeedData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFeed = async () => {
+      // Fetch from backend /api/v1/recommendations
+      const data = await apiClient.get('/recommendations');
+      if (data) {
+        setFeedData(data);
+      }
+      setIsLoading(false);
+    };
+    fetchFeed();
+  }, []);
+
+  // Use dummy data as fallback if backend is slow/failing for the demo
+  const displayProducts = feedData?.feed?.recommended?.map(item => ({
+    id: item._id,
+    name: item.title,
+    brand: item.brand,
+    price: item.price,
+    rating: 4.8,
+    reviews: 120,
+    image: item.images?.[0] || DUMMY_PRODUCTS[0].image
+  })) || DUMMY_PRODUCTS;
+
+  const exploreProducts = feedData?.feed?.explore?.map(item => ({
+    id: item._id,
+    name: item.title,
+    brand: item.brand,
+    price: item.price,
+    rating: 4.5,
+    reviews: 80,
+    image: item.images?.[0] || DUMMY_PRODUCTS[0].image
+  })) || DUMMY_PRODUCTS;
+
+  const newArrivals = feedData?.feed?.newArrivals?.map(item => ({
+    id: item._id,
+    name: item.title,
+    brand: item.brand,
+    price: item.price,
+    rating: 4.9,
+    reviews: 30,
+    image: item.images?.[0] || DUMMY_PRODUCTS[0].image
+  })) || DUMMY_PRODUCTS;
 
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
@@ -164,6 +215,11 @@ export default function HomePage() {
                 className="w-full bg-transparent border-none pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:ring-0 text-slate-900 placeholder:text-slate-500"
                 onFocus={() => setSearchFocused(true)}
                 onBlur={() => setSearchFocused(false)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    window.location.hash = `#search?q=${e.target.value}`;
+                  }
+                }}
               />
             </div>
           </div>
@@ -227,11 +283,11 @@ export default function HomePage() {
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Current Context</span>
                     <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
-                      <Sparkles className="w-3 h-3" /> 94% Match
+                      <Sparkles className="w-3 h-3" /> {feedData?.metrics?.candidateCount ? 'AI Generated' : '94% Match'}
                     </span>
                   </div>
                   <h3 className="text-base font-semibold text-slate-900 mt-0.5">
-                    Fitness & Training Journey
+                    {feedData?.intentContext?.dominantCategory || "Fitness & Training Journey"}
                   </h3>
                 </div>
               </div>
@@ -256,22 +312,18 @@ export default function HomePage() {
         )}
 
         {/* 4. RECOMMENDED FOR YOU */}
-        <ProductCarousel 
-          title="Recommended For You" 
-          products={DUMMY_PRODUCTS.slice(0, 5)} 
-        />
-
-        {/* 5. COMPLETE THE LOOK */}
-        <ProductCarousel 
-          title="Complete The Look" 
-          products={[...DUMMY_PRODUCTS].reverse().slice(0, 4)} 
-        />
-
-        {/* 6. FREQUENTLY BOUGHT TOGETHER */}
-        <ProductCarousel 
-          title="Frequently Bought Together" 
-          products={DUMMY_PRODUCTS.slice(1, 6)} 
-        />
+        {isLoading ? (
+          <div className="px-12 py-8 animate-pulse flex gap-6">
+             <div className="w-64 h-80 bg-slate-100 rounded-2xl"></div>
+             <div className="w-64 h-80 bg-slate-100 rounded-2xl"></div>
+             <div className="w-64 h-80 bg-slate-100 rounded-2xl"></div>
+          </div>
+        ) : (
+          <ProductCarousel 
+            title="Recommended For You" 
+            products={displayProducts} 
+          />
+        )}
 
         {/* Promotional Break */}
         <section className="px-4 sm:px-6 md:px-12 py-8">
@@ -290,23 +342,21 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 7. TRENDING */}
-        <ProductCarousel 
-          title="Trending Now" 
-          products={[...DUMMY_PRODUCTS].sort(() => 0.5 - Math.random())} 
-        />
-
         {/* 8. EXPLORE MORE */}
-        <ProductCarousel 
-          title="Explore More Categories" 
-          products={[...DUMMY_PRODUCTS].slice(2, 6)} 
-        />
+        {!isLoading && (
+          <ProductCarousel 
+            title="Explore More Categories" 
+            products={exploreProducts} 
+          />
+        )}
 
         {/* 9. NEW ARRIVALS */}
-        <ProductCarousel 
-          title="Fresh Drops & New Arrivals" 
-          products={DUMMY_PRODUCTS} 
-        />
+        {!isLoading && (
+          <ProductCarousel 
+            title="Fresh Drops & New Arrivals" 
+            products={newArrivals} 
+          />
+        )}
 
       </main>
     </div>

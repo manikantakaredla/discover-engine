@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ShoppingBag, ChevronRight, Mail, Lock, Loader2, Sparkles, Zap, ShieldCheck } from 'lucide-react';
-import { clsx, type ClassValue } from 'clsx';
+import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 // --- Utility for Tailwind ---
@@ -93,6 +93,7 @@ export default function LoginPage() {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
     setIsLoading(false);
+    window.location.hash = '#home';
   };
 
   const handleDemoLogin = async () => {
@@ -100,6 +101,7 @@ export default function LoginPage() {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
     setIsDemoLoading(false);
+    window.location.hash = '#home';
   };
 
   return (

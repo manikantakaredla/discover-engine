@@ -59,6 +59,7 @@ const ProductCard = ({ product }) => {
       className="group flex flex-col min-w-[200px] max-w-[200px] sm:min-w-[240px] sm:max-w-[240px] cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => window.location.hash = `#product?id=${product.id}`}
     >
       <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100 mb-4">
         <img 
@@ -298,7 +299,10 @@ export default function ProductDetailsPage() {
 
             {/* Action Buttons */}
             <div className="flex flex-col gap-3">
-              <button className="w-full py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base shadow-xl shadow-blue-600/20 transition-all active:scale-[0.98]">
+              <button 
+                onClick={() => alert(`Added ${PRODUCT.name} to cart!`)}
+                className="w-full py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base shadow-xl shadow-blue-600/20 transition-all active:scale-[0.98]"
+              >
                 Add to Cart — ${PRODUCT.price.toFixed(2)}
               </button>
               <div className="flex gap-3">
