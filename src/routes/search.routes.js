@@ -1,10 +1,14 @@
 import express from 'express';
-import { performSearch } from '../controllers/search.controller.js';
+import {
+  semanticSearch,
+  vectorSearch,
+  hybridSearch,
+  imageSearch
+} from '../controllers/search.controller.js';
 import { protect } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
-// Optional authentication to track user's searches, but allows guests too
 const optionalProtect = (req, res, next) => {
   if (req.headers.authorization || (req.cookies && req.cookies.jwt)) {
     return protect(req, res, next);
@@ -12,6 +16,9 @@ const optionalProtect = (req, res, next) => {
   next();
 };
 
-router.get('/', optionalProtect, performSearch);
+router.post('/semantic', optionalProtect, semanticSearch);
+router.post('/vector', optionalProtect, vectorSearch);
+router.post('/hybrid', optionalProtect, hybridSearch);
+router.post('/image', optionalProtect, imageSearch);
 
 export default router;

@@ -1,35 +1,53 @@
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
-import Product from '../models/Product.model.js';
+import { routeQuery } from '../ai/aiRouter.js';
+import Intent from '../models/Intent.model.js';
 import SearchEvent from '../models/SearchEvent.model.js';
 
-export const performSearch = asyncHandler(async (req, res) => {
-  const { q, sessionId } = req.query;
-  
-  if (!q) {
-    return res.status(400).json(new ApiResponse(400, [], 'Query is required'));
-  }
-
-  const startTime = Date.now();
-  
-  // Basic text search (Vector/Semantic search goes in AI module later)
-  const results = await Product.find({
-    $text: { $search: q },
-    isDeleted: false
-  }).limit(20);
-
-  const searchTimeMs = Date.now() - startTime;
-
-  // Track search event if sessionId is provided
-  if (sessionId) {
+const trackSearch = async (req, query, resultsLength, searchTimeMs) => {
+  if (req.body.sessionId) {
     await SearchEvent.create({
       user: req.user ? req.user._id : null,
-      session: sessionId,
-      query: q,
-      resultsReturned: results.length,
+      session: req.body.sessionId,
+      query,
+      resultsReturned: resultsLength,
       searchTimeMs
     });
   }
+};
 
-  res.status(200).json(new ApiResponse(200, results, 'Search results fetched'));
+export const semanticSearch = asyncHandler(async (req, res) => {
+  const { query, sessionId } = req.body;
+  const intentDoc = sessionId ? await Intent.findOne({ sessionId }) : null;
+  const intentContext = intentDoc ? intentDoc.intentContext : null;
+  
+  const startTime = Date.now();
+  const result = await routeQuery('SEMANTIC', { query }, intentContext);
+  
+  await trackSearch(req, query, result.candidates.length, Date.now() - startTime);
+
+  res.status(200).json(new ApiResponse(200, result, 'Semantic search successful'));
+});
+
+export const vectorSearch = asyncHandler(async (req, res) => {
+  const { query, sessionId } = req.body;
+  const intentDoc = sessionId ? await Intent.findOne({ sessionId }) : null;
+  
+  const result = await routeQuery('VECTOR', { query }, intentDoc?.intentContext);
+  res.status(200).json(new ApiResponse(200, result, 'Vector search successful'));
+});
+
+export const hybridSearch = asyncHandler(async (req, res) => {
+  const { query, sessionId } = req.body;
+  const intentDoc = sessionId ? await Intent.findOne({ sessionId }) : null;
+  
+  const result = await routeQuery('HYBRID', { query }, intentDoc?.intentContext);
+  res.status(200).json(new ApiResponse(200, result, 'Hybrid search successful'));
+});
+
+export const imageSearch = asyncHandler(async (req, res) => {
+  // Placeholder for image URL or Base64 upload
+  const { imageUrl } = req.body;
+  const result = await routeQuery('IMAGE', { imageUrl }, null);
+  res.status(200).json(new ApiResponse(200, result, 'Image search successful'));
 });
