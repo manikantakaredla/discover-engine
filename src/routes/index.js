@@ -10,6 +10,7 @@ import searchRoutes from './search.routes.js';
 import intentRoutes from './intent.routes.js';
 import recommendationRoutes from './recommendation.routes.js';
 import retrievalRoutes from './retrieval.routes.js';
+import adminRoutes from './admin.routes.js';
 
 const router = express.Router();
 
@@ -24,6 +25,7 @@ router.use('/search', searchRoutes);
 router.use('/intent', intentRoutes);
 router.use('/recommendations', recommendationRoutes);
 router.use('/retrieval', retrievalRoutes);
+router.use('/admin', adminRoutes);
 
 // We will add analytics routes here later
 
