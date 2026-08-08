@@ -14,12 +14,12 @@ function cn(...inputs) {
 const METRICS = [
   { label: "Click-Through Rate", value: "24.8%", trend: "+2.1%", isGood: true, icon: MousePointerClick },
   { label: "Conversion Rate", value: "12.4%", trend: "+1.2%", isGood: true, icon: ShoppingCart },
-  { label: "Average Order Value", value: "$142.50", trend: "+$4.20", isGood: true, icon: DollarSign },
+  { label: "Average Order Value", value: "₹4,250", trend: "+₹350", isGood: true, icon: DollarSign },
   { label: "Cold Start Success", value: "88.2%", trend: "+5.4%", isGood: true, icon: UserPlus },
   { label: "Feed Quality Score", value: "94/100", trend: "+1", isGood: true, icon: Sparkles },
   { label: "Diversity Score", value: "96%", trend: "-2%", isGood: false, icon: Layers },
   { label: "Avg Latency", value: "42ms", trend: "-4ms", isGood: true, icon: Clock },
-  { label: "Cost Per Req", value: "$0.0014", trend: "-$0.0002", isGood: true, icon: CreditCard },
+  { label: "Cost Per Req", value: "₹0.12", trend: "-₹0.01", isGood: true, icon: CreditCard },
 ];
 
 const TREND_DATA_1 = [30, 45, 40, 60, 50, 75, 65, 85, 80, 95, 90, 110];
@@ -215,11 +215,11 @@ export default function KpiDashboard() {
             <div className="flex items-center gap-6 mt-4 mb-2">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-indigo-500" />
-                <span className="text-sm font-semibold text-slate-700">AI Feed ($42k)</span>
+                <span className="text-sm font-semibold text-slate-700">AI Feed (₹42L)</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-sky-300" />
-                <span className="text-sm font-semibold text-slate-700">Organic ($18k)</span>
+                <span className="text-sm font-semibold text-slate-700">Organic (₹18L)</span>
               </div>
             </div>
 

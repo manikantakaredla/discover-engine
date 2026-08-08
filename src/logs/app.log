@@ -1412,3 +1412,175 @@ Please retry in 48.994990979s. [{"@type":"type.googleapis.com/google.rpc.Help","
 [2026-08-08T05:09:16.602Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-00.32waqvz.mongodb.net
 [2026-08-08T05:13:05.801Z] [INFO] Server running in development mode on port 5000
 [2026-08-08T05:13:06.484Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
+[2026-08-08T05:14:42.160Z] [INFO] Performing vector search for query: "gucci perfume"
+[2026-08-08T05:14:43.029Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 16.949595374s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"model":"gemini-3.6-flash","location":"global"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"16s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T05:14:44.335Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T05:14:44.350Z] [INFO] Found 20 semantic matches for "gucci perfume" (highest score: 0.7630958493784394)
+[2026-08-08T05:14:44.366Z] [INFO] Performing vector search for query: "gucci perfume"
+[2026-08-08T05:14:44.608Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 15.35179602s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-3.6-flash"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"15s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T05:14:45.818Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T05:14:45.821Z] [INFO] Found 20 semantic matches for "gucci perfume" (highest score: 0.7630958493784394)
+[2026-08-08T05:14:50.181Z] [INFO] Performing vector search for query: "gucci perfume"
+[2026-08-08T05:14:50.475Z] [INFO] Performing vector search for query: "blue bag"
+[2026-08-08T05:14:50.546Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 9.419459088s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-3.6-flash"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"9s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T05:14:50.836Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 9.129445367s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"model":"gemini-3.6-flash","location":"global"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"9s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T05:14:52.810Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T05:14:52.813Z] [INFO] Found 20 semantic matches for "blue bag" (highest score: 0.570661328145863)
+[2026-08-08T05:14:52.851Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T05:14:52.855Z] [INFO] Found 20 semantic matches for "gucci perfume" (highest score: 0.7630958493784394)
+[2026-08-08T05:14:52.895Z] [INFO] Performing vector search for query: "blue bag"
+[2026-08-08T05:14:53.129Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 6.849224928s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"model":"gemini-3.6-flash","location":"global"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"6s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T05:14:55.161Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T05:14:55.165Z] [INFO] Found 20 semantic matches for "blue bag" (highest score: 0.570661328145863)
+[2026-08-08T05:14:56.822Z] [INFO] Performing vector search for query: "blue bag"
+[2026-08-08T05:14:57.079Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 2.927008667s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-3.6-flash"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"2s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T05:14:57.098Z] [INFO] Performing vector search for query: "gucci perfume"
+[2026-08-08T05:14:57.508Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 2.459264747s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-3.6-flash"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"2s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T05:14:59.567Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T05:14:59.569Z] [INFO] Found 20 semantic matches for "gucci perfume" (highest score: 0.7630958493784394)
+[2026-08-08T05:14:59.589Z] [INFO] Performing vector search for query: "gucci perfume"
+[2026-08-08T05:14:59.642Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T05:14:59.645Z] [INFO] Found 20 semantic matches for "blue bag" (highest score: 0.570661328145863)
+[2026-08-08T05:14:59.995Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 59.966740122s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-3.6-flash"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"59s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T05:15:01.735Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T05:15:01.737Z] [INFO] Found 20 semantic matches for "gucci perfume" (highest score: 0.7630958493784394)
+[2026-08-08T05:15:09.034Z] [INFO] Performing vector search for query: "perfume orange colour"
+[2026-08-08T05:15:09.325Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 50.627756486s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"model":"gemini-3.6-flash","location":"global"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"50s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T05:15:11.058Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T05:15:11.062Z] [INFO] Found 20 semantic matches for "perfume orange colour" (highest score: 0.5225177766473564)
+[2026-08-08T05:15:11.087Z] [INFO] Performing vector search for query: "perfume orange colour"
+[2026-08-08T05:15:11.286Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 48.664404096s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-3.6-flash"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"48s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T05:15:12.444Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T05:15:12.448Z] [INFO] Found 20 semantic matches for "perfume orange colour" (highest score: 0.5225177766473564)
+[2026-08-08T05:15:19.277Z] [INFO] Performing vector search for query: "perfume orange colour"
+[2026-08-08T05:15:19.600Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 40.365390896s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"model":"gemini-3.6-flash","location":"global"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"40s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T05:15:21.598Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T05:15:21.603Z] [INFO] Found 20 semantic matches for "perfume orange colour" (highest score: 0.5225177766473564)
+[2026-08-08T05:15:21.610Z] [INFO] Performing vector search for query: "perfume orange colour"
+[2026-08-08T05:15:21.864Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 38.120497183s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-3.6-flash"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"38s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T05:15:24.288Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T05:15:24.291Z] [INFO] Found 20 semantic matches for "perfume orange colour" (highest score: 0.5225177766473564)
+[2026-08-08T05:29:59.545Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T05:30:00.155Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-02.32waqvz.mongodb.net
+[2026-08-08T05:30:29.152Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T05:30:29.827Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-02.32waqvz.mongodb.net

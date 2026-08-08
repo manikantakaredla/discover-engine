@@ -27,7 +27,7 @@ const PRODUCT = {
     "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=800&q=80",
   ],
   colors: ["Crimson Red", "Onyx Black", "Glacier White"],
-  sizes: ["US 7", "US 8", "US 9", "US 10", "US 11", "US 12"],
+  sizes: ["UK 7", "UK 8", "UK 9", "UK 10", "UK 11", "UK 12"],
   inStock: true,
 };
 
