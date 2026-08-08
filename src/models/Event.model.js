@@ -12,7 +12,7 @@ const eventSchema = new mongoose.Schema({
   },
   eventType: {
     type: String,
-    enum: ['page_view', 'search', 'product_click', 'add_to_cart', 'purchase'],
+    enum: ['page_view', 'search', 'product_click', 'add_to_cart', 'purchase', 'recommendation_click', 'complete_look_click', 'fbt_click'],
     required: true,
     index: true
   },

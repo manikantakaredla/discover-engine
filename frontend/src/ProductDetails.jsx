@@ -59,7 +59,14 @@ const ProductCard = ({ product }) => {
       className="group flex flex-col min-w-[200px] max-w-[200px] sm:min-w-[240px] sm:max-w-[240px] cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => window.location.hash = `#product?id=${product.id}`}
+      onClick={() => {
+        apiClient.post('/analytics/track', { 
+            eventType: 'recommendation_click', 
+            productId: product.id,
+            metadata: { source: 'product_details_related' }
+        }).catch(console.error);
+        window.location.hash = `#product?id=${product.id}`;
+      }}
     >
       <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100 mb-4">
         <img 
@@ -160,6 +167,14 @@ export default function ProductDetailsPage() {
           }
         } else {
           setProduct(PRODUCT);
+        }
+        
+        if (idParam) {
+          apiClient.post('/analytics/track', { 
+            eventType: 'page_view', 
+            productId: idParam,
+            metadata: { source: 'direct_load' }
+          }).catch(console.error);
         }
 
         // Fetch real related products

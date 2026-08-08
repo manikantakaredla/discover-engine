@@ -1,288 +1,70 @@
-# Discover Engine
+# Discover Engine 🚀
 
-> AI-Powered Personalized Multi-Intent Product Discovery Platform
+Discover Engine is a next-generation, AI-powered e-commerce search and recommendation platform built for the ultimate hackathon demonstration. It replaces traditional keyword search with deep semantic understanding, intent detection, and personalized real-time feeds.
 
-Discover Engine is an intelligent recommendation and product discovery platform designed to improve the shopping experience by understanding a user's real-time shopping intent instead of relying only on historical purchases.
+## 🌟 Project Overview
+Traditional e-commerce platforms force users to speak "computer" (e.g., "shoes running black size 10"). Discover Engine allows users to speak human (e.g., "I need something comfortable for my marathon training"). Our two-tower semantic architecture understands the *intent* behind the query, retrieves vector-embedded products, applies real-time business guardrails, and renders a dynamic, highly personalized feed.
 
-The system combines session behavior, semantic search, product relationships, and explainable recommendations to generate a personalized discovery experience for every user.
+## 🏗 Architecture
+- **Frontend:** React, Vite, TailwindCSS, Lucide Icons (Premium UI)
+- **Backend:** Node.js, Express, MongoDB (Mongoose)
+- **AI Core:** Google Gemini 3.6 Flash (Intent Detection & Guardrails), Gemini Embedding 2 (Vector Embeddings)
+- **Vector Search:** MongoDB Atlas Vector Search (Cosine Similarity)
 
----
+## ✨ Features
+- **Semantic Search:** Finds products based on meaning, not just exact keyword matches.
+- **Intent Extraction:** Automatically determines price range, target audience, and category from raw text.
+- **Explainable AI:** Transparent UI showing *why* a product was recommended.
+- **Real-time KPI Dashboard:** Admin view showing execution trace, system latency, cache hits, and CTR metrics.
+- **Event Tracking Pipeline:** Tracks page views, searches, and recommendation clicks asynchronously.
 
-# Problem Statement
+## 🚀 Installation & Setup
 
-Traditional recommendation systems primarily depend on historical purchase data, making it difficult to understand what a customer is interested in during the current shopping session.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-repo/discover-engine.git
+   cd discover-engine
+   ```
 
-Some common challenges include:
+2. **Backend Setup:**
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-- Cold-start recommendations for new users
-- Poor semantic understanding of search queries
-- Repetitive recommendations
-- Lack of explainability
-- Limited product discovery
+3. **Frontend Setup:**
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
 
-Discover Engine addresses these challenges using a hybrid recommendation pipeline that focuses on current user intent.
+4. **Seed the Database:**
+   ```bash
+   node seed_fakestore.cjs
+   ```
 
----
-
-# Features
-
-## 1. Intent Intelligence
-
-Analyzes user interactions such as:
-
-- Product views
-- Search history
-- Cart activity
-- Wishlist
-- Session behavior
-
-to identify the customer's current shopping intent.
-
-Example
-
-```
-Running Shoes
-↓
-
-Protein Powder
-↓
-
-Gym Bottle
-
-↓
-
-Fitness Journey
+## 🔐 Environment Variables
+Create a `.env` file in the root directory:
+```env
+PORT=5000
+MONGODB_URI=mongodb+srv://<user>:<password>@cluster0.mongodb.net/discover-engine
+GEMINI_API_KEY=your_gemini_api_key
 ```
 
----
+## 🎥 Demo Flow (Golden Path)
+1. **Home Page:** User lands on the beautifully curated catalog.
+2. **Semantic Search:** User searches "running shoes" or "black bag".
+3. **Intent Detection:** Gemini extracts the underlying intent (e.g., Fitness Journey).
+4. **Vector Retrieval:** Backend performs cosine similarity search against the DB.
+5. **Explainability:** User clicks a product and sees exactly *why* it matched their intent.
+6. **Admin Dashboard:** Hackathon judges view the live `Execution Trace`, pipeline latency, and KPI metrics.
 
-## 2. Personalized Discovery Feed
-
-Instead of showing the same homepage to everyone, Discover Engine generates a personalized feed containing
-
-- Recommended For You
-- Trending Products
-- Complete The Look
-- Frequently Bought Together
-- Explore More
-- New Arrivals
-
-based on the customer's current shopping session.
-
----
-
-## 3. Semantic Product Search
-
-Search works beyond exact keyword matching.
-
-Example
-
-```
-Gaming setup
-```
-
-returns
-
-- Gaming Monitor
-- Mechanical Keyboard
-- Gaming Chair
-- RGB Mouse
-- Headset
-
-instead of only products containing the word "gaming".
+## 🔮 Future Scope
+- **Personalized Collaborative Filtering (NCF):** Combining semantic search with historical user behavior.
+- **Multi-modal Search:** Allowing users to upload images to search by vision.
+- **Dynamic Pricing:** Real-time price adjustments based on inventory and demand.
+- **Voice Commerce:** Voice-activated semantic search integration.
 
 ---
-
-## 4. Explainable Recommendations
-
-Every recommendation includes a reason explaining why it appears.
-
-Example
-
-```
-Why was this recommended?
-
-• You searched for Running Shoes
-
-• You viewed Sports Accessories
-
-• Your current shopping intent is Fitness Journey
-```
-
-This improves transparency and user trust.
-
----
-
-## 5. Enterprise Guardrails
-
-Recommendation quality is maintained using rule-based validation.
-
-Current guardrails include
-
-- Duplicate removal
-- Category diversity
-- Product availability validation
-- Recommendation validation
-- Explainability checks
-
----
-
-## 6. Admin Analytics Dashboard
-
-An admin dashboard provides insights into system performance.
-
-Available metrics include
-
-- Recommendation latency
-- Feed quality
-- Recommendation workflow
-- AI decision trace
-- Business KPIs
-- Recommendation analytics
-
----
-
-# Project Architecture
-
-```
-User Session
-      │
-      ▼
-Intent Intelligence Engine
-      │
-      ▼
-Recommendation Strategy
-      │
-      ▼
-Candidate Retrieval
-      │
-      ▼
-Recommendation Ranking
-      │
-      ▼
-Guardrails
-      │
-      ▼
-Explainability
-      │
-      ▼
-Personalized Discovery Feed
-```
-
----
-
-# Tech Stack
-
-## Frontend
-
-- React
-- Vite
-- Tailwind CSS
-- Axios
-- React Router
-
-## Backend
-
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT Authentication
-
-## AI Components
-
-- Hybrid Intent Detection
-- Semantic Search
-- Explainability Engine
-- Recommendation Pipeline
-
----
-
-# Project Structure
-
-```
-frontend/
-backend/
-
-backend/src
-
-controllers/
-
-routes/
-
-services/
-
-models/
-
-middleware/
-
-ai/
-
-utils/
-
-config/
-```
-
----
-
-# Getting Started
-
-## Backend
-
-```bash
-cd backend
-npm install
-npm run dev
-```
-
----
-
-## Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
----
-
-
-
-# Demo Flow
-
-1. Login using the demo account.
-2. Search for **Running Shoes**.
-3. View multiple sports products.
-4. Add **Protein Powder** to the cart.
-5. Observe the updated shopping intent.
-6. Return to the home page.
-7. View personalized recommendations.
-8. Open a product.
-9. Check **Complete The Look**.
-10. View **Frequently Bought Together**.
-11. Click **Why Recommended**.
-12. Open the Admin Dashboard to view the AI workflow and recommendation analytics.
-
----
-
-# Future Enhancements
-
-- Multimodal embeddings
-- Real-time vector search
-- Personalized ranking models
-- Continuous learning from user behavior
-- Voice and image search
-- Recommendation feedback loop
-
----
-
-# Team
-
-Developed during a hackathon to demonstrate how modern recommendation systems can combine AI, explainability, and real-time personalization to improve product discovery.
-
----
-
-# License
-
-This project is created for educational and hackathon purposes.
+*Built with ❤️ for the Hackathon.*

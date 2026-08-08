@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Search, ShoppingBag, Heart, User, Menu, 
   Star, Plus, Sparkles, ChevronDown, SlidersHorizontal, Filter
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { apiClient } from './api/client.js';
 
 // --- Utility ---
 function cn(...inputs) {
@@ -29,7 +30,7 @@ const IconButton = ({ icon: Icon, badge, className }) => (
   </button>
 );
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, query }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -39,9 +40,11 @@ const ProductCard = ({ product }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => {
-        import('./api/client.js').then(({ apiClient }) => {
-          apiClient.post('/analytics/track', { eventType: 'product_click', productId: product.id }).catch(() => {});
-        });
+        apiClient.post('/analytics/track', { 
+            eventType: 'product_click', 
+            productId: product.id,
+            metadata: { source: 'search_results', query }
+        }).catch(console.error);
         window.location.hash = `#product?id=${product.id}`;
       }}
     >
@@ -116,8 +119,6 @@ const FilterSection = ({ title, options, selected, onChange }) => (
 );
 
 // --- Main Page ---
-import { useEffect, useMemo } from 'react';
-import { apiClient } from './api/client.js';
 
 export default function SearchResultsPage() {
   const [searchFocused, setSearchFocused] = useState(false);
@@ -140,27 +141,34 @@ export default function SearchResultsPage() {
     const hash = window.location.hash;
     const qParam = hash.split('q=')[1];
     const searchQuery = qParam ? qParam : "Running Shoes";
-    setQuery(decodeURIComponent(searchQuery));
+    const decodedQuery = decodeURIComponent(searchQuery);
+    setQuery(decodedQuery);
 
     const fetchSearch = async () => {
       setIsLoading(true);
-      const decodedQuery = decodeURIComponent(searchQuery);
       
-      // Track the search event
-      apiClient.post('/analytics/track', { eventType: 'search', metadata: { query: decodedQuery } }).catch(() => {});
-      
-      const data = await apiClient.get(`/search?q=${encodeURIComponent(decodedQuery)}`);
-      
-      if (data && data.products) {
-        // First 4 as highly relevant (simulating semantic match badge)
-        const ai = data.products.slice(0, 4).map(c => ({
-           id: c._id, name: c.title, brand: c.brand, category: c.category, price: c.price, rating: c.rating || 4.9, reviews: c.reviewCount || 120, image: c.images?.[0], semantic: true
-        }));
-        const all = data.products.slice(4).map(c => ({
-           id: c._id, name: c.title, brand: c.brand, category: c.category, price: c.price, rating: c.rating || 4.5, reviews: c.reviewCount || 80, image: c.images?.[0]
-        }));
-        setResults({ aiSuggested: ai, all: all });
-      } else {
+      try {
+        const data = await apiClient.get(`/search?q=${encodeURIComponent(decodedQuery)}`);
+        
+        // Track the search event
+        apiClient.post('/analytics/track', { 
+            eventType: 'search', 
+            metadata: { query: decodedQuery } 
+        }).catch(console.error);
+        
+        if (data && data.products) {
+            // First 4 as highly relevant (simulating semantic match badge)
+            const ai = data.products.slice(0, 4).map(c => ({
+            id: c._id, name: c.title, brand: c.brand, category: c.category, price: c.price, rating: c.rating || 4.9, reviews: c.reviewCount || 120, image: c.images?.[0], semantic: true
+            }));
+            const all = data.products.slice(4).map(c => ({
+            id: c._id, name: c.title, brand: c.brand, category: c.category, price: c.price, rating: c.rating || 4.5, reviews: c.reviewCount || 80, image: c.images?.[0]
+            }));
+            setResults({ aiSuggested: ai, all: all });
+        } else {
+            setResults({ aiSuggested: [], all: [] });
+        }
+      } catch (err) {
         setResults({ aiSuggested: [], all: [] });
       }
       setIsLoading(false);
