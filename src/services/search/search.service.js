@@ -36,8 +36,7 @@ export const searchProducts = async (rawQuery) => {
   ]);
 
   if (!queryEmbedding || queryEmbedding.length === 0) {
-    logger.warn('Failed to generate embedding for query. Falling back to empty search.');
-    return { query: intent, products: [] };
+    logger.warn('Failed to generate embedding for query. Falling back to text/category search.');
   }
 
   // 2. Fetch all active products (MVP approach for semantic search without Atlas Vector Index)
@@ -64,6 +63,15 @@ export const searchProducts = async (rawQuery) => {
       }
     }
     
+    // Direct Text Match Boost (Crucial for when embeddings fail or for exact keyword searches)
+    const lowerQuery = rawQuery.toLowerCase();
+    if (product.title && product.title.toLowerCase().includes(lowerQuery)) {
+      score += 0.5; // Huge boost for exact title match
+    }
+    if (product.category && product.category.toLowerCase().includes(lowerQuery)) {
+      score += 0.3; // Boost for exact category match
+    }
+    
     return { ...product, score };
   });
 
@@ -71,9 +79,9 @@ export const searchProducts = async (rawQuery) => {
   scoredProducts.sort((a, b) => b.score - a.score);
 
   // 5. Filter out completely irrelevant results (score threshold) 
-  // and take top 20
+  // and take top 20. Lowered threshold to 0.15 to allow category/text fallbacks to appear.
   const topProducts = scoredProducts
-    .filter(p => p.score > 0.3) // threshold to ensure quality matches
+    .filter(p => p.score > 0.15) 
     .slice(0, 20);
 
   logger.info(`Found ${topProducts.length} semantic matches for "${rawQuery}" (highest score: ${topProducts.length > 0 ? topProducts[0].score : 0})`);
