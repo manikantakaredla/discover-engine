@@ -48,12 +48,22 @@ export const searchProducts = async (rawQuery) => {
     logger.info(`Query embedding length: ${queryEmbedding.length}, First product embedding length: ${allProducts[0].embedding ? allProducts[0].embedding.length : 'none'}`);
   }
 
-  // 3. Compute cosine similarity between query and every product
+  // 3. Compute cosine similarity and apply intent category boosting
   const scoredProducts = allProducts.map(product => {
     let score = 0;
     if (product.embedding && product.embedding.length > 0) {
       score = cosineSimilarity(queryEmbedding, product.embedding);
     }
+    
+    // Fallback & Category Boosting logic
+    if (intent && intent.category && product.category) {
+      // Boost score significantly if the LLM's detected category matches the product's category
+      if (product.category.toLowerCase().includes(intent.category.toLowerCase()) || 
+          intent.category.toLowerCase().includes(product.category.toLowerCase())) {
+        score += 0.25; // Massive semantic boost
+      }
+    }
+    
     return { ...product, score };
   });
 

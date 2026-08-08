@@ -190,6 +190,9 @@ export default function ProductDetailsPage() {
              }
            }
            
+           // Shuffle the filtered array to ensure dynamic recommendations every time
+           filtered.sort(() => 0.5 - Math.random());
+           
            const mappedRelated = filtered.slice(0, 8).map(p => ({
               id: p._id,
               name: p.title,

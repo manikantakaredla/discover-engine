@@ -58,7 +58,12 @@ async function run() {
       const batchPromises = batch.map(async (p) => {
         try {
           const tags = [p.category, ...(p.tags || [])];
-          const embedding = await generateEmbed(p.title, p.description || '', tags);
+          let embedding = [];
+          try {
+            embedding = await generateEmbed(p.title, p.description || '', tags);
+          } catch (embedError) {
+            console.log(`⚠️ Rate limit hit for embedding ${p.title}, skipping embedding...`);
+          }
           
           await Product.create({
             title: p.title,
