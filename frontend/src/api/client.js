@@ -10,11 +10,6 @@ const getSessionId = () => {
   return sessionId;
 };
 
-// Also store app initialization timestamp to show more data in storage
-if (!localStorage.getItem('discover_app_installed_at')) {
-  localStorage.setItem('discover_app_installed_at', new Date().toISOString());
-}
-
 export const apiClient = {
   get: async (endpoint) => {
     try {
