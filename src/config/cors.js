@@ -2,7 +2,7 @@ import cors from 'cors';
 import { env } from './env.js';
 
 export const corsConfig = cors({
-  origin: env.frontendUrl,
+  origin: '*',
   credentials: true,
   optionsSuccessStatus: 200,
 });

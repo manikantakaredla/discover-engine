@@ -137,8 +137,32 @@ const MiniBarChart = ({ data }) => {
   );
 };
 
+import { useEffect, useState } from 'react';
+import { apiClient } from './api/client.js';
+
 // --- Main Page ---
 export default function AdminDashboard() {
+  const [adminData, setAdminData] = useState({
+    intent: METRICS.intent,
+    strategy: METRICS.strategy,
+    feedQuality: METRICS.feedQuality,
+    latency: METRICS.latency,
+    cacheHit: METRICS.cacheHit,
+    confidence: METRICS.confidence,
+    latencyData: LATENCY_DATA,
+    traceId: "req_8f72c91b4a"
+  });
+
+  useEffect(() => {
+    const fetchAdmin = async () => {
+      const data = await apiClient.get('/analytics/admin');
+      if (data) setAdminData(data);
+    };
+    fetchAdmin();
+    const interval = setInterval(fetchAdmin, 5000); // Live updates every 5s
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#FAFAFA] font-sans text-slate-900">
       
@@ -166,7 +190,7 @@ export default function AdminDashboard() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight text-slate-900 mb-1">Execution Trace</h1>
-            <p className="text-sm text-slate-500">Req ID: <span className="font-mono text-slate-400">req_8f72c91b4a</span> • Just now</p>
+            <p className="text-sm text-slate-500">Req ID: <span className="font-mono text-slate-400">{adminData.traceId}</span> • Just now</p>
           </div>
           <div className="flex gap-2">
             <button className="px-4 py-2 bg-white border border-slate-200 rounded-md text-sm font-medium hover:bg-slate-50 transition-colors shadow-sm">
@@ -179,17 +203,17 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
           <MetricCard 
             title="Current Intent" 
-            value={METRICS.intent} 
+            value={adminData.intent} 
             icon={Target} 
           />
           <MetricCard 
             title="Active Strategy" 
-            value={METRICS.strategy} 
+            value={adminData.strategy} 
             icon={Activity} 
           />
           <MetricCard 
             title="AI Confidence" 
-            value={METRICS.confidence} 
+            value={adminData.confidence} 
             unit="%"
             icon={CheckCircle2} 
             trend="up"
@@ -202,15 +226,15 @@ export default function AdminDashboard() {
               <Clock className="w-4 h-4 text-slate-400" />
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-2xl font-semibold tracking-tight text-slate-900 font-mono">{METRICS.latency}</span>
+              <span className="text-2xl font-semibold tracking-tight text-slate-900 font-mono">{adminData.latency}</span>
               <span className="text-sm font-medium text-slate-500 font-mono">ms</span>
             </div>
-            <MiniBarChart data={LATENCY_DATA} />
+            <MiniBarChart data={adminData.latencyData} />
           </div>
 
           <MetricCard 
             title="Feed Quality Score" 
-            value={METRICS.feedQuality}
+            value={adminData.feedQuality}
             unit="/ 100" 
             icon={Sparkles} 
             trend="up"
@@ -218,7 +242,7 @@ export default function AdminDashboard() {
           />
           <MetricCard 
             title="Cache Hit Rate" 
-            value={METRICS.cacheHit} 
+            value={adminData.cacheHit} 
             unit="%"
             icon={Database} 
             trend="down"

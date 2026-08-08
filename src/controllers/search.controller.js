@@ -3,18 +3,33 @@ import { ApiResponse } from '../utils/ApiResponse.js';
 import { routeQuery } from '../ai/aiRouter.js';
 import Intent from '../models/Intent.model.js';
 import SearchEvent from '../models/SearchEvent.model.js';
+import { searchProducts as performSearch } from '../services/search/search.service.js';
 
 const trackSearch = async (req, query, resultsLength, searchTimeMs) => {
-  if (req.body.sessionId) {
+  if (req.body.sessionId || req.query.sessionId) {
     await SearchEvent.create({
       user: req.user ? req.user._id : null,
-      session: req.body.sessionId,
+      session: req.body.sessionId || req.query.sessionId,
       query,
       resultsReturned: resultsLength,
       searchTimeMs
     });
   }
 };
+
+export const searchProductsController = asyncHandler(async (req, res) => {
+  const query = req.query.q;
+  if (!query) {
+    return res.status(400).json(new ApiResponse(400, null, 'Search query ?q= is required'));
+  }
+
+  const startTime = Date.now();
+  const result = await performSearch(query);
+  
+  await trackSearch(req, query, result.products.length, Date.now() - startTime);
+
+  res.status(200).json(new ApiResponse(200, result, 'Search successful'));
+});
 
 export const semanticSearch = asyncHandler(async (req, res) => {
   const { query, sessionId } = req.body;

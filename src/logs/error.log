@@ -229,3 +229,158 @@
     at model.Query.exec (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:4627:80)
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
     at async Module.getProductById (file:///C:/Users/manik/Music/discover%20engine/src/services/product/product.service.js:50:19)
+[2026-08-08T00:31:41.869Z] [ERROR] Error connecting to MongoDB: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017. Retries left: 4
+[2026-08-08T00:31:53.556Z] [ERROR] Error connecting to MongoDB: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017. Retries left: 4
+[2026-08-08T00:32:05.420Z] [ERROR] Error connecting to MongoDB: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017. Retries left: 4
+[2026-08-08T00:32:18.633Z] [ERROR] Error connecting to MongoDB: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017. Retries left: 4
+[2026-08-08T00:32:28.128Z] [ERROR] Error connecting to MongoDB: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017. Retries left: 4
+[2026-08-08T00:32:36.501Z] [ERROR] Error connecting to MongoDB: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017. Retries left: 4
+[2026-08-08T00:32:46.534Z] [ERROR] Error connecting to MongoDB: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017. Retries left: 3
+[2026-08-08T00:32:47.671Z] [ERROR] [GET] /api/v1/products/202 >> StatusCode:: 500, Message:: Cast to ObjectId failed for value "202" (type string) at path "_id" for model "Product" - CastError: Cast to ObjectId failed for value "202" (type string) at path "_id" for model "Product"
+    at SchemaObjectId.cast (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaType.applySetters (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaType.castForQuery (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\schemaType.js:1718:17)
+    at cast (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Module.getProductById (file:///C:/Users/manik/Music/discover%20engine/src/services/product/product.service.js:50:19)
+[2026-08-08T00:32:47.714Z] [ERROR] [GET] /api/v1/products/202 >> StatusCode:: 500, Message:: Cast to ObjectId failed for value "202" (type string) at path "_id" for model "Product" - CastError: Cast to ObjectId failed for value "202" (type string) at path "_id" for model "Product"
+    at SchemaObjectId.cast (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaType.applySetters (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaType.castForQuery (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\schemaType.js:1718:17)
+    at cast (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Module.getProductById (file:///C:/Users/manik/Music/discover%20engine/src/services/product/product.service.js:50:19)
+[2026-08-08T00:32:56.557Z] [ERROR] Error connecting to MongoDB: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017. Retries left: 2
+[2026-08-08T00:32:57.726Z] [ERROR] [GET] /api/v1/products >> StatusCode:: 500, Message:: Operation `products.find()` buffering timed out after 10000ms - MongooseError: Operation `products.find()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-08-08T00:33:06.590Z] [ERROR] Error connecting to MongoDB: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017. Retries left: 1
+[2026-08-08T00:33:07.747Z] [ERROR] [GET] /api/v1/products >> StatusCode:: 500, Message:: Operation `products.find()` buffering timed out after 10000ms - MongooseError: Operation `products.find()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[2026-08-08T00:33:16.615Z] [ERROR] Error connecting to MongoDB: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017. Retries left: 0
+[2026-08-08T01:19:12.777Z] [ERROR] Error connecting to MongoDB: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/. Retries left: 4
+[2026-08-08T01:19:22.805Z] [ERROR] Error connecting to MongoDB: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/. Retries left: 3
+[2026-08-08T01:19:32.841Z] [ERROR] Error connecting to MongoDB: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/. Retries left: 2
+[2026-08-08T01:19:42.875Z] [ERROR] Error connecting to MongoDB: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/. Retries left: 1
+[2026-08-08T01:19:52.910Z] [ERROR] Error connecting to MongoDB: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/. Retries left: 0
+[2026-08-08T01:29:51.241Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T01:33:24.856Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T01:33:25.137Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T01:33:31.311Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T01:33:31.617Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T01:33:31.822Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T01:44:01.643Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T01:44:01.862Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T01:44:06.624Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T01:44:06.937Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T01:44:19.535Z] [ERROR] [GET] /api/v1/products/4 >> StatusCode:: 500, Message:: Cast to ObjectId failed for value "4" (type string) at path "_id" for model "Product" - CastError: Cast to ObjectId failed for value "4" (type string) at path "_id" for model "Product"
+    at SchemaObjectId.cast (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaType.applySetters (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaType.castForQuery (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\schemaType.js:1718:17)
+    at cast (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Module.getProductById (file:///C:/Users/manik/Music/discover%20engine/src/services/product/product.service.js:50:19)
+[2026-08-08T01:44:19.548Z] [ERROR] [GET] /api/v1/products/4 >> StatusCode:: 500, Message:: Cast to ObjectId failed for value "4" (type string) at path "_id" for model "Product" - CastError: Cast to ObjectId failed for value "4" (type string) at path "_id" for model "Product"
+    at SchemaObjectId.cast (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaType.applySetters (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaType.castForQuery (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\schemaType.js:1718:17)
+    at cast (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:5060:12)
+    at Query._castConditions (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._findOne (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:2697:8)
+    at model.Query.exec (C:\Users\manik\Music\discover engine\node_modules\mongoose\lib\query.js:4627:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Module.getProductById (file:///C:/Users/manik/Music/discover%20engine/src/services/product/product.service.js:50:19)
+[2026-08-08T01:48:09.136Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [400 Bad Request] API key not valid. Please pass a valid API key. [{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"API_KEY_INVALID","domain":"googleapis.com","metadata":{"service":"generativelanguage.googleapis.com"}},{"@type":"type.googleapis.com/google.rpc.LocalizedMessage","locale":"en-US","message":"API key not valid. Please pass a valid API key."}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18

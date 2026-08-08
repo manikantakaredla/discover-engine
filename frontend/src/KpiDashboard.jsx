@@ -119,8 +119,45 @@ const HorizontalBarChart = ({ data }) => (
   </div>
 );
 
+import { useEffect, useState } from 'react';
+import { apiClient } from './api/client.js';
+
 // --- Main Page ---
 export default function KpiDashboard() {
+  const [metricsData, setMetricsData] = useState({
+    metrics: METRICS,
+    categories: CATEGORIES,
+    intents: INTENTS
+  });
+
+  useEffect(() => {
+    const fetchKPIs = async () => {
+      const data = await apiClient.get('/analytics/kpi');
+      if (data) {
+        // Map backend metrics string labels to icons
+        const iconMap = {
+          "Click-Through Rate": MousePointerClick,
+          "Conversion Rate": ShoppingCart,
+          "Average Order Value": DollarSign,
+          "Total Views": UserPlus,
+          "Feed Quality Score": Sparkles,
+          "Total Clicks": MousePointerClick,
+          "Total Purchases": ShoppingCart,
+          "Total Searches": Search
+        };
+        const mappedMetrics = data.metrics.map(m => ({ ...m, icon: iconMap[m.label] || Sparkles }));
+        setMetricsData({
+          metrics: mappedMetrics,
+          categories: data.categories,
+          intents: data.intents
+        });
+      }
+    };
+    fetchKPIs();
+    const interval = setInterval(fetchKPIs, 10000); // Polling every 10s for demo
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#F6F9FC] font-sans text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
       
@@ -158,7 +195,7 @@ export default function KpiDashboard() {
 
         {/* METRICS GRID */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
-          {METRICS.map((metric, idx) => (
+          {metricsData.metrics.map((metric, idx) => (
             <MetricCard key={idx} {...metric} />
           ))}
         </div>
@@ -248,10 +285,10 @@ export default function KpiDashboard() {
               </div>
               
               <div className="flex-1 flex flex-col gap-3 w-full">
-                {INTENTS.map((intent, i) => (
+                {metricsData.intents.map((intent, i) => (
                   <div key={i} className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className={cn("w-3 h-3 rounded-full shadow-sm", intent.color)} />
+                      <div className={cn("w-3 h-3 rounded-full shadow-sm", intent.color || "bg-indigo-500")} />
                       <span className="text-sm font-medium text-slate-700">{intent.name}</span>
                     </div>
                     <span className="text-sm font-semibold text-slate-900">{intent.value}%</span>
@@ -266,7 +303,7 @@ export default function KpiDashboard() {
               <h3 className="text-base font-bold text-slate-900">Popular Categories</h3>
             </div>
             <p className="text-sm text-slate-500 mb-2">By conversion rate.</p>
-            <HorizontalBarChart data={CATEGORIES} />
+            <HorizontalBarChart data={metricsData.categories} />
           </div>
 
         </div>

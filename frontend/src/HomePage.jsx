@@ -43,7 +43,12 @@ const ProductCard = ({ product }) => {
       className="group flex flex-col min-w-[220px] max-w-[220px] sm:min-w-[260px] sm:max-w-[260px] cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => window.location.hash = `#product?id=${product.id}`}
+      onClick={() => {
+        import('./api/client.js').then(({ apiClient }) => {
+          apiClient.post('/analytics/track', { eventType: 'product_click', productId: product.id }).catch(() => {});
+        });
+        window.location.hash = `#product?id=${product.id}`;
+      }}
     >
       {/* Image Container */}
       <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100 mb-4">
@@ -137,6 +142,9 @@ export default function HomePage() {
 
   useEffect(() => {
     const fetchFeed = async () => {
+      // Log page view
+      apiClient.post('/analytics/track', { eventType: 'page_view' }).catch(() => {});
+      
       // Fetch from backend /api/v1/recommendations/home
       const data = await apiClient.get('/recommendations/home');
       if (data) {

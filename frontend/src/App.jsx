@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, ChevronRight, Mail, Lock, Loader2, Sparkles, Zap, ShieldCheck } from 'lucide-react';
+import { ShoppingBag, ChevronRight, Mail, Lock, Loader2, Sparkles, Zap, ShieldCheck, User } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -85,22 +85,36 @@ Label.displayName = "Label";
 // --- Main Login Page Component ---
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const [isDemoLoading, setIsDemoLoading] = useState(false);
+  const [isDemoLoading, setIsDemoLoading] = useState({ admin: false, customer: false });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setIsLoading(true);
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise(resolve => setTimeout(resolve, 1000));
     setIsLoading(false);
     window.location.hash = '#home';
   };
 
-  const handleDemoLogin = async () => {
-    setIsDemoLoading(true);
+  const handleDemoLogin = async (type) => {
+    setIsDemoLoading(prev => ({ ...prev, [type]: true }));
+    
+    // Auto-fill credentials based on role
+    if (type === 'admin') {
+      setEmail('admin@discoverengine.ai');
+      setPassword('admin_secure_123');
+      localStorage.setItem('userRole', 'admin');
+    } else {
+      setEmail('customer@example.com');
+      setPassword('demo_pass_456');
+      localStorage.setItem('userRole', 'customer');
+    }
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsDemoLoading(false);
+    setIsDemoLoading(prev => ({ ...prev, [type]: false }));
     window.location.hash = '#home';
   };
 
@@ -174,7 +188,7 @@ export default function LoginPage() {
           <div className="flex flex-col space-y-2 text-center mb-8">
             <h2 className="text-2xl font-semibold tracking-tight text-slate-900">Welcome back</h2>
             <p className="text-sm text-slate-500">
-              Enter your credentials to access the admin dashboard
+              Enter your credentials to access the platform
             </p>
           </div>
 
@@ -185,10 +199,12 @@ export default function LoginPage() {
                 <Input 
                   id="email" 
                   type="email" 
-                  placeholder="admin@discoverengine.ai" 
+                  placeholder="name@example.com" 
                   icon={Mail} 
                   required 
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="space-y-2">
@@ -205,6 +221,8 @@ export default function LoginPage() {
                   icon={Lock} 
                   required 
                   autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
@@ -230,16 +248,28 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <Button 
-            variant="outline" 
-            type="button" 
-            className="w-full text-base font-medium h-12" 
-            onClick={handleDemoLogin}
-            isLoading={isDemoLoading}
-          >
-            {!isDemoLoading && <Zap className="mr-2 h-4 w-4 text-blue-600" />}
-            Demo Login
-          </Button>
+          <div className="flex flex-col gap-3">
+            <Button 
+              variant="outline" 
+              type="button" 
+              className="w-full text-base font-medium h-12" 
+              onClick={() => handleDemoLogin('customer')}
+              isLoading={isDemoLoading.customer}
+            >
+              {!isDemoLoading.customer && <User className="mr-2 h-4 w-4 text-blue-600" />}
+              Customer Demo Login
+            </Button>
+            <Button 
+              variant="outline" 
+              type="button" 
+              className="w-full text-base font-medium h-12" 
+              onClick={() => handleDemoLogin('admin')}
+              isLoading={isDemoLoading.admin}
+            >
+              {!isDemoLoading.admin && <ShieldCheck className="mr-2 h-4 w-4 text-red-600" />}
+              Admin Demo Login
+            </Button>
+          </div>
 
           <p className="mt-8 text-center text-sm text-slate-500">
             Don't have an account?{' '}

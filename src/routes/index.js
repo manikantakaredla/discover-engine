@@ -12,6 +12,8 @@ import recommendationRoutes from './recommendation.routes.js';
 import retrievalRoutes from './retrieval.routes.js';
 import adminRoutes from './admin.routes.js';
 
+import analyticsRoutes from './analytics.routes.js';
+
 const router = express.Router();
 
 router.use('/auth', authRoutes);
@@ -26,7 +28,6 @@ router.use('/intent', intentRoutes);
 router.use('/recommendations', recommendationRoutes);
 router.use('/retrieval', retrievalRoutes);
 router.use('/admin', adminRoutes);
-
-// We will add analytics routes here later
+router.use('/analytics', analyticsRoutes);
 
 export default router;

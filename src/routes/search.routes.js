@@ -3,7 +3,8 @@ import {
   semanticSearch,
   vectorSearch,
   hybridSearch,
-  imageSearch
+  imageSearch,
+  searchProductsController
 } from '../controllers/search.controller.js';
 import { protect } from '../middleware/auth.middleware.js';
 
@@ -16,6 +17,7 @@ const optionalProtect = (req, res, next) => {
   next();
 };
 
+router.get('/', optionalProtect, searchProductsController);
 router.post('/semantic', optionalProtect, semanticSearch);
 router.post('/vector', optionalProtect, vectorSearch);
 router.post('/hybrid', optionalProtect, hybridSearch);

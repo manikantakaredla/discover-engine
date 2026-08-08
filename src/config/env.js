@@ -9,6 +9,7 @@ export const env = {
   jwtSecret: process.env.JWT_SECRET || 'secret',
   jwtExpiry: process.env.JWT_EXPIRY || '7d',
   apiPrefix: process.env.API_PREFIX || '/api/v1',
+  geminiApiKey: process.env.GEMINI_API_KEY,
   admin: {
     email: process.env.ADMIN_EMAIL,
     password: process.env.ADMIN_PASSWORD,

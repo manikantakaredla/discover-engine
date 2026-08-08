@@ -11,24 +11,6 @@ function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-// --- Dummy Data ---
-const AI_SUGGESTED = [
-  { id: 201, name: "Cloud-Step Pro Running Shoes", brand: "Stride", price: 165.00, rating: 4.9, reviews: 428, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80", semantic: true },
-  { id: 202, name: "Aero Glide Marathon Runners", brand: "Velocity", price: 145.00, rating: 4.8, reviews: 156, image: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&q=80", semantic: true },
-  { id: 203, name: "Ultra-Light Workout Tee", brand: "Velocity", price: 45.00, rating: 4.8, reviews: 124, image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80", semantic: true },
-];
-
-const ALL_RESULTS = [
-  { id: 1, name: "Basic Running Shoes", brand: "Active", price: 85.00, rating: 4.2, reviews: 89, image: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&q=80" },
-  { id: 2, name: "Trail Blazer Kicks", brand: "Trek", price: 110.00, rating: 4.5, reviews: 212, image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500&q=80" },
-  { id: 3, name: "Performance Quarter Socks", brand: "Stride", price: 18.00, rating: 4.7, reviews: 312, image: "https://images.unsplash.com/photo-1582966772680-860e372bb558?w=500&q=80" },
-  { id: 4, name: "Hydration Flask 32oz", brand: "Aqua", price: 35.00, rating: 4.6, reviews: 56, image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&q=80" },
-  { id: 5, name: "Pro Compression Tights", brand: "Aura", price: 89.00, rating: 4.9, reviews: 89, image: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=500&q=80" },
-  { id: 6, name: "Smart Fitness Watch", brand: "Pulse", price: 199.00, rating: 4.9, reviews: 892, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80" },
-  { id: 7, name: "Resistance Band Set", brand: "Flex", price: 24.00, rating: 4.8, reviews: 432, image: "https://images.unsplash.com/photo-1598266663412-7bb88e634794?w=500&q=80" },
-  { id: 8, name: "Gym Duffel Bag", brand: "Active", price: 55.00, rating: 4.4, reviews: 145, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80" },
-];
-
 const FILTERS = {
   categories: ["Running Shoes", "Apparel", "Accessories", "Electronics"],
   brands: ["Stride", "Velocity", "Aura", "Active", "Trek"],
@@ -56,7 +38,12 @@ const ProductCard = ({ product }) => {
       className="group flex flex-col w-full cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => window.location.hash = `#product?id=${product.id}`}
+      onClick={() => {
+        import('./api/client.js').then(({ apiClient }) => {
+          apiClient.post('/analytics/track', { eventType: 'product_click', productId: product.id }).catch(() => {});
+        });
+        window.location.hash = `#product?id=${product.id}`;
+      }}
     >
       <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100 mb-4 border border-slate-100">
         <img 
@@ -109,22 +96,27 @@ const ProductCard = ({ product }) => {
   );
 };
 
-const FilterSection = ({ title, options }) => (
+const FilterSection = ({ title, options, selected, onChange }) => (
   <div className="py-5 border-b border-slate-100 last:border-0">
     <h3 className="text-sm font-bold text-slate-900 mb-4">{title}</h3>
     <div className="space-y-3">
-      {options.map((option, idx) => (
-        <label key={idx} className="flex items-center gap-3 cursor-pointer group">
-          <div className="w-4 h-4 rounded border border-slate-300 group-hover:border-blue-500 transition-colors flex items-center justify-center bg-white" />
-          <span className="text-sm text-slate-600 group-hover:text-slate-900 transition-colors">{option}</span>
-        </label>
-      ))}
+      {options.map((option, idx) => {
+        const isChecked = selected.includes(option);
+        return (
+          <label key={idx} className="flex items-center gap-3 cursor-pointer group" onClick={() => onChange(option)}>
+            <div className={cn("w-4 h-4 rounded border transition-colors flex items-center justify-center", isChecked ? "bg-blue-600 border-blue-600" : "bg-white border-slate-300 group-hover:border-blue-500")}>
+              {isChecked && <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
+            </div>
+            <span className={cn("text-sm transition-colors", isChecked ? "text-slate-900 font-medium" : "text-slate-600 group-hover:text-slate-900")}>{option}</span>
+          </label>
+        );
+      })}
     </div>
   </div>
 );
 
 // --- Main Page ---
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { apiClient } from './api/client.js';
 
 export default function SearchResultsPage() {
@@ -134,29 +126,42 @@ export default function SearchResultsPage() {
   const [results, setResults] = useState({ aiSuggested: [], all: [] });
   const [isLoading, setIsLoading] = useState(true);
 
+  // Filters state
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedPrices, setSelectedPrices] = useState([]);
+
+  const toggleFilter = (setter, option) => {
+    setter(prev => prev.includes(option) ? prev.filter(item => item !== option) : [...prev, option]);
+  };
+
   useEffect(() => {
     // Parse ?q=... from hash #search?q=shoes
     const hash = window.location.hash;
     const qParam = hash.split('q=')[1];
-    const decodedQuery = qParam ? decodeURIComponent(qParam) : "Running Shoes";
-    setQuery(decodedQuery);
+    const searchQuery = qParam ? qParam : "Running Shoes";
+    setQuery(decodeURIComponent(searchQuery));
 
     const fetchSearch = async () => {
       setIsLoading(true);
-      const data = await apiClient.post('/search/semantic', { query: decodedQuery, sessionId: 'demo-session-123' });
+      const decodedQuery = decodeURIComponent(searchQuery);
       
-      if (data && data.candidates) {
-        // Mock splitting semantic vs standard for UI demo purposes
-        const ai = data.candidates.slice(0, 4).map(c => ({
-           id: c._id, name: c.title, brand: c.brand, price: c.price, rating: 4.9, reviews: 120, image: c.images?.[0] || AI_SUGGESTED[0].image, semantic: true
+      // Track the search event
+      apiClient.post('/analytics/track', { eventType: 'search', metadata: { query: decodedQuery } }).catch(() => {});
+      
+      const data = await apiClient.get(`/search?q=${encodeURIComponent(decodedQuery)}`);
+      
+      if (data && data.products) {
+        // First 4 as highly relevant (simulating semantic match badge)
+        const ai = data.products.slice(0, 4).map(c => ({
+           id: c._id, name: c.title, brand: c.brand, category: c.category, price: c.price, rating: c.rating || 4.9, reviews: c.reviewCount || 120, image: c.images?.[0], semantic: true
         }));
-        const all = data.candidates.slice(4).map(c => ({
-           id: c._id, name: c.title, brand: c.brand, price: c.price, rating: 4.5, reviews: 80, image: c.images?.[0] || ALL_RESULTS[0].image
+        const all = data.products.slice(4).map(c => ({
+           id: c._id, name: c.title, brand: c.brand, category: c.category, price: c.price, rating: c.rating || 4.5, reviews: c.reviewCount || 80, image: c.images?.[0]
         }));
         setResults({ aiSuggested: ai, all: all });
       } else {
-        // Fallback
-        setResults({ aiSuggested: AI_SUGGESTED, all: ALL_RESULTS });
+        setResults({ aiSuggested: [], all: [] });
       }
       setIsLoading(false);
     };
@@ -177,6 +182,30 @@ export default function SearchResultsPage() {
     window.addEventListener('hashchange', handleHash);
     return () => window.removeEventListener('hashchange', handleHash);
   }, []);
+
+  // Filter Logic
+  const filterProducts = (products) => {
+    return products.filter(product => {
+      const matchCategory = selectedCategories.length === 0 || selectedCategories.some(c => product.category?.toLowerCase().includes(c.toLowerCase()) || product.name?.toLowerCase().includes(c.toLowerCase()));
+      const matchBrand = selectedBrands.length === 0 || selectedBrands.some(b => product.brand?.toLowerCase() === b.toLowerCase());
+      
+      let matchPrice = true;
+      if (selectedPrices.length > 0) {
+        matchPrice = selectedPrices.some(range => {
+          if (range === "Under $50") return product.price < 50;
+          if (range === "$50 - $100") return product.price >= 50 && product.price <= 100;
+          if (range === "$100 - $200") return product.price > 100 && product.price <= 200;
+          if (range === "Over $200") return product.price > 200;
+          return true;
+        });
+      }
+
+      return matchCategory && matchBrand && matchPrice;
+    });
+  };
+
+  const filteredAiSuggested = useMemo(() => filterProducts(results.aiSuggested), [results.aiSuggested, selectedCategories, selectedBrands, selectedPrices]);
+  const filteredAll = useMemo(() => filterProducts(results.all), [results.all, selectedCategories, selectedBrands, selectedPrices]);
 
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
@@ -202,7 +231,8 @@ export default function SearchResultsPage() {
               </div>
               <input 
                 type="text" 
-                defaultValue={query}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
                 className="w-full bg-transparent border-none pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:ring-0 text-slate-900 placeholder:text-slate-500 font-medium"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
@@ -229,7 +259,7 @@ export default function SearchResultsPage() {
             <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
               Results for "{query}"
             </h1>
-            <p className="text-sm text-slate-500 mt-1">Showing {results.aiSuggested.length + results.all.length} results</p>
+            <p className="text-sm text-slate-500 mt-1">Showing {filteredAiSuggested.length + filteredAll.length} results</p>
           </div>
           <div className="flex items-center gap-3">
             <button 
@@ -253,9 +283,9 @@ export default function SearchResultsPage() {
             mobileFiltersOpen ? "flex" : "hidden lg:flex"
           )}>
             <div className="sticky top-24 bg-white">
-              <FilterSection title="Category" options={FILTERS.categories} />
-              <FilterSection title="Brand" options={FILTERS.brands} />
-              <FilterSection title="Price" options={FILTERS.priceRanges} />
+              <FilterSection title="Category" options={FILTERS.categories} selected={selectedCategories} onChange={(opt) => toggleFilter(setSelectedCategories, opt)} />
+              <FilterSection title="Brand" options={FILTERS.brands} selected={selectedBrands} onChange={(opt) => toggleFilter(setSelectedBrands, opt)} />
+              <FilterSection title="Price" options={FILTERS.priceRanges} selected={selectedPrices} onChange={(opt) => toggleFilter(setSelectedPrices, opt)} />
               
               <div className="py-5 border-b border-slate-100">
                 <h3 className="text-sm font-bold text-slate-900 mb-4">Rating</h3>
@@ -286,14 +316,14 @@ export default function SearchResultsPage() {
             ) : (
                 <>
                     {/* AI Suggested Results */}
-                    {results.aiSuggested.length > 0 && (
+                    {filteredAiSuggested.length > 0 && (
                         <section>
                         <div className="flex items-center gap-2 mb-5 pb-3 border-b border-slate-100">
                             <Sparkles className="w-5 h-5 text-blue-600" />
                             <h2 className="text-lg font-bold text-slate-900">Highly Relevant Matches</h2>
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-                            {results.aiSuggested.map(product => (
+                            {filteredAiSuggested.map(product => (
                             <ProductCard key={product.id} product={product} />
                             ))}
                         </div>
@@ -301,17 +331,24 @@ export default function SearchResultsPage() {
                     )}
 
                     {/* Standard Results */}
-                    {results.all.length > 0 && (
+                    {filteredAll.length > 0 && (
                         <section>
                         <div className="mb-5 pb-3 border-b border-slate-100">
                             <h2 className="text-lg font-bold text-slate-900">All Results</h2>
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-                            {results.all.map(product => (
+                            {filteredAll.map(product => (
                             <ProductCard key={product.id} product={product} />
                             ))}
                         </div>
                         </section>
+                    )}
+
+                    {filteredAiSuggested.length === 0 && filteredAll.length === 0 && (
+                        <div className="py-20 text-center">
+                           <p className="text-lg text-slate-500 font-medium">No products found matching your filters.</p>
+                           <button onClick={() => { setSelectedCategories([]); setSelectedBrands([]); setSelectedPrices([]); }} className="mt-4 text-blue-600 font-semibold hover:underline">Clear all filters</button>
+                        </div>
                     )}
                 </>
             )}

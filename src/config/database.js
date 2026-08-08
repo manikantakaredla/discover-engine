@@ -1,31 +1,48 @@
 import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 import { env } from './env.js';
 import { logger } from './logger.js';
 import { seedDatabase } from '../scripts/seed.js';
 
-let mongoServer;
-
-export const connectDB = async () => {
-  try {
-    let uri = env.mongoUri;
-    
-    // For Hackathon MVP: Always use MongoMemoryServer to guarantee zero-friction setup
-    // unless explicitly disabled or overridden.
-    if (!uri || uri.includes('localhost') || process.env.USE_MEMORY_DB !== 'false') {
-      logger.info('Starting In-Memory MongoDB Server for MVP...');
-      mongoServer = await MongoMemoryServer.create();
-      uri = mongoServer.getUri();
-    }
-
-    const conn = await mongoose.connect(uri);
-    logger.info(`MongoDB Connected: ${conn.connection.host}`);
-    
-    // Seed database automatically for the MVP
-    await seedDatabase();
-
-  } catch (error) {
-    logger.error(`Error connecting to MongoDB: ${error.message}`);
+export const connectDB = async (retries = 5, delay = 5000) => {
+  const uri = env.mongoUri;
+  
+  if (!uri) {
+    logger.error('MONGODB_URI is not defined in environment variables.');
     process.exit(1);
   }
+
+  while (retries > 0) {
+    try {
+      const conn = await mongoose.connect(uri, {
+        serverSelectionTimeoutMS: 5000,
+      });
+      logger.info(`MongoDB Connected: ${conn.connection.host}`);
+      
+      // Seed database automatically for the MVP
+      await seedDatabase();
+      return;
+    } catch (error) {
+      retries -= 1;
+      logger.error(`Error connecting to MongoDB: ${error.message}. Retries left: ${retries}`);
+      if (retries === 0) {
+        logger.error('Could not connect to MongoDB after multiple attempts. Exiting...');
+        process.exit(1);
+      }
+      // Wait before retrying
+      await new Promise(res => setTimeout(res, delay));
+    }
+  }
 };
+
+// Graceful shutdown handling
+process.on('SIGINT', async () => {
+  await mongoose.connection.close();
+  logger.info('MongoDB connection closed due to application termination');
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  await mongoose.connection.close();
+  logger.info('MongoDB connection closed due to application termination');
+  process.exit(0);
+});
