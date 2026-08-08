@@ -695,3 +695,61 @@
 [2026-08-08T03:50:24.826Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-02.32waqvz.mongodb.net
 [2026-08-08T03:50:32.458Z] [INFO] Server running in development mode on port 5000
 [2026-08-08T03:50:32.960Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-00.32waqvz.mongodb.net
+[2026-08-08T03:52:24.191Z] [INFO] Performing vector search for query: "black shirt"
+[2026-08-08T03:52:28.026Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:52:28.037Z] [INFO] Found 20 semantic matches for "black shirt" (highest score: 0.6785796702261799)
+[2026-08-08T03:52:28.060Z] [INFO] Performing vector search for query: "black shirt"
+[2026-08-08T03:52:32.048Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:52:32.051Z] [INFO] Found 20 semantic matches for "black shirt" (highest score: 0.6785796702261799)
+[2026-08-08T03:52:39.229Z] [INFO] Performing vector search for query: "black shirt"
+[2026-08-08T03:52:39.521Z] [INFO] Performing vector search for query: "blue bag"
+[2026-08-08T03:52:44.148Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:52:44.151Z] [INFO] Found 20 semantic matches for "black shirt" (highest score: 0.6785796702261799)
+[2026-08-08T03:52:44.324Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:52:44.328Z] [INFO] Found 20 semantic matches for "blue bag" (highest score: 0.5579592503499918)
+[2026-08-08T03:52:44.341Z] [INFO] Performing vector search for query: "blue bag"
+[2026-08-08T03:52:48.320Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:52:48.323Z] [INFO] Found 20 semantic matches for "blue bag" (highest score: 0.5579592503499918)
+[2026-08-08T03:53:00.349Z] [INFO] Performing vector search for query: "blue bag"
+[2026-08-08T03:53:00.677Z] [INFO] Performing vector search for query: "white t shirt"
+[2026-08-08T03:53:00.998Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 56.86390684s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"model":"gemini-3.6-flash","location":"global"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"56s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T03:53:02.772Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:53:02.775Z] [INFO] Found 20 semantic matches for "white t shirt" (highest score: 0.6225306529585543)
+[2026-08-08T03:53:02.788Z] [INFO] Performing vector search for query: "white t shirt"
+[2026-08-08T03:53:03.017Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash
+Please retry in 54.894718985s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-3.6-flash"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"54s"}]
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T03:53:03.550Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:53:03.552Z] [INFO] Found 20 semantic matches for "blue bag" (highest score: 0.5579592503499918)
+[2026-08-08T03:53:04.597Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:53:04.601Z] [INFO] Found 20 semantic matches for "white t shirt" (highest score: 0.6225306529585543)
+[2026-08-08T03:54:52.467Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:54:53.098Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
+[2026-08-08T03:55:33.448Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:55:34.094Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-00.32waqvz.mongodb.net
+[2026-08-08T03:56:37.194Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:56:38.158Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
+[2026-08-08T03:57:33.363Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:57:34.578Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-00.32waqvz.mongodb.net
+[2026-08-08T03:58:52.908Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:58:53.740Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-00.32waqvz.mongodb.net
+[2026-08-08T03:59:09.487Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:59:10.335Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-00.32waqvz.mongodb.net
