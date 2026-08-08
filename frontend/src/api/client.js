@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5000/api/v1';
+const BASE_URL = import.meta.env.PROD ? '/api/v1' : 'http://localhost:5000/api/v1';
 
 // Generate or retrieve a persistent session ID for analytics
 const getSessionId = () => {
