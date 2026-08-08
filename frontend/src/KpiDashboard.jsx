@@ -154,7 +154,7 @@ export default function KpiDashboard() {
       }
     };
     fetchKPIs();
-    const interval = setInterval(fetchKPIs, 10000); // Polling every 10s for demo
+    const interval = setInterval(fetchKPIs, 2000); // Fast polling for real-time feel
     return () => clearInterval(interval);
   }, []);
 

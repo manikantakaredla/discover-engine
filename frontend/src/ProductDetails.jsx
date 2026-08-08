@@ -180,7 +180,17 @@ export default function ProductDetailsPage() {
         // Fetch real related products
         const relatedData = await apiClient.get('/products');
         if (relatedData && relatedData.products) {
-           const mappedRelated = relatedData.products.slice(0, 8).map(p => ({
+           let filtered = relatedData.products;
+           // If we have the current product's data, filter by its category
+           if (data && data.category) {
+             filtered = filtered.filter(p => p.category === data.category && p._id !== data._id);
+             // If there aren't enough in the same category, fallback to others
+             if (filtered.length < 4) {
+               filtered = [...filtered, ...relatedData.products.filter(p => p.category !== data.category && p._id !== data._id)];
+             }
+           }
+           
+           const mappedRelated = filtered.slice(0, 8).map(p => ({
               id: p._id,
               name: p.title,
               brand: p.brand,

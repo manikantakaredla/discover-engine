@@ -159,7 +159,7 @@ export default function AdminDashboard() {
       if (data) setAdminData(data);
     };
     fetchAdmin();
-    const interval = setInterval(fetchAdmin, 5000); // Live updates every 5s
+    const interval = setInterval(fetchAdmin, 2000); // Fast polling for real-time feel
     return () => clearInterval(interval);
   }, []);
 
