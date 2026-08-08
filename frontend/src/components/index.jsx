@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Search, ShoppingBag, Heart, User, Menu, Star, Plus, Target, 
-  Sparkles, X, ChevronRight, AlertCircle, PackageX, Check, Filter
+  Sparkles, X, ChevronRight, AlertCircle, PackageX, Check, Filter, Loader2
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -10,6 +10,80 @@ import { motion, AnimatePresence } from 'framer-motion';
 export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
+
+// --- Shared UI Components ---
+export const Button = React.forwardRef(({ className, variant = "default", size = "default", isLoading, children, ...props }, ref) => {
+  const baseStyles = "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 disabled:pointer-events-none disabled:opacity-50";
+  const variants = {
+    default: "bg-blue-600 text-white shadow hover:bg-blue-600/90",
+    outline: "border border-slate-200 bg-white shadow-sm hover:bg-slate-100 hover:text-slate-900",
+    ghost: "hover:bg-slate-100 hover:text-slate-900",
+  };
+  const sizes = {
+    default: "h-10 px-4 py-2",
+    sm: "h-8 rounded-md px-3 text-xs",
+    lg: "h-12 rounded-md px-8",
+    icon: "h-9 w-9",
+  };
+  
+  return (
+    <button
+      ref={ref}
+      className={cn(baseStyles, variants[variant], sizes[size], className)}
+      disabled={isLoading || props.disabled}
+      {...props}
+    >
+      {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+      {children}
+    </button>
+  );
+});
+Button.displayName = "Button";
+
+export const Input = React.forwardRef(({ className, type, icon: Icon, ...props }, ref) => {
+  return (
+    <div className="relative">
+      {Icon && (
+        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+          <Icon className="h-4 w-4" />
+        </div>
+      )}
+      <input
+        type={type}
+        className={cn(
+          "flex h-10 w-full rounded-md border border-slate-200 bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 disabled:cursor-not-allowed disabled:opacity-50",
+          Icon && "pl-9",
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    </div>
+  );
+});
+Input.displayName = "Input";
+
+export const Checkbox = React.forwardRef(({ className, ...props }, ref) => (
+  <input
+    type="checkbox"
+    ref={ref}
+    className={cn(
+      "peer h-4 w-4 shrink-0 rounded-sm border border-slate-200 shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white accent-blue-600",
+      className
+    )}
+    {...props}
+  />
+));
+Checkbox.displayName = "Checkbox";
+
+export const Label = React.forwardRef(({ className, ...props }, ref) => (
+  <label
+    ref={ref}
+    className={cn("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70", className)}
+    {...props}
+  />
+));
+Label.displayName = "Label";
 
 // --- Animation Configs (Apple Style: Subtle, Fast, Springy) ---
 const springTransition = { type: "spring", stiffness: 400, damping: 30 };

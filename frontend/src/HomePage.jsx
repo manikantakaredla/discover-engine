@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Search, ShoppingCart, Heart, User, Menu, 
+  Search, ShoppingBag, Heart, User, Menu, 
   ChevronRight, Star, Plus, MapPin, Zap
 } from 'lucide-react';
 import { clsx } from 'clsx';

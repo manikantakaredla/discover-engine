@@ -134,6 +134,7 @@ export default function ProductDetailsPage() {
   const [isFavorite, setIsFavorite] = useState(false);
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState(RELATED_PRODUCTS);
+  const [completeLookProducts, setCompleteLookProducts] = useState(RELATED_PRODUCTS);
   const [isLoading, setIsLoading] = useState(true);
 
   // Added defaults since API products don't have these mock arrays
@@ -147,8 +148,10 @@ export default function ProductDetailsPage() {
       const idParam = hash.split('id=')[1];
       
       try {
+        let fetchedProduct = null;
         if (idParam) {
           const data = await apiClient.get(`/products/${idParam}`);
+          fetchedProduct = data;
           if (data) {
             setProduct({
               id: data._id,
@@ -177,17 +180,19 @@ export default function ProductDetailsPage() {
           }).catch(console.error);
         }
 
-        // Fetch real related products
-        const relatedData = await apiClient.get('/products');
+        // Fetch real related products by category
+        const categoryQuery = fetchedProduct && fetchedProduct.category 
+          ? `?category=${encodeURIComponent(fetchedProduct.category)}&limit=15` 
+          : '?limit=15';
+        const relatedData = await apiClient.get(`/products${categoryQuery}`);
+        
+        // Fetch products for "Complete The Look" by fetching broader set
+        const allData = await apiClient.get(`/products?limit=40`);
+        
         if (relatedData && relatedData.products) {
            let filtered = relatedData.products;
-           // If we have the current product's data, filter by its category
-           if (data && data.category) {
-             filtered = filtered.filter(p => p.category === data.category && p._id !== data._id);
-             // If there aren't enough in the same category, fallback to others
-             if (filtered.length < 4) {
-               filtered = [...filtered, ...relatedData.products.filter(p => p.category !== data.category && p._id !== data._id)];
-             }
+           if (fetchedProduct) {
+             filtered = filtered.filter(p => p._id !== fetchedProduct._id);
            }
            
            // Shuffle the filtered array to ensure dynamic recommendations every time
@@ -203,6 +208,28 @@ export default function ProductDetailsPage() {
               image: p.images?.[0] || RELATED_PRODUCTS[0].image
            }));
            setRelatedProducts(mappedRelated);
+        }
+
+        if (allData && allData.products) {
+           let lookFiltered = allData.products;
+           if (fetchedProduct && fetchedProduct.category) {
+             // Exclude the current category to get complementary items (like water bottles, socks for shoes)
+             lookFiltered = lookFiltered.filter(p => p.category !== fetchedProduct.category && p._id !== fetchedProduct._id);
+           }
+           
+           lookFiltered.sort(() => 0.5 - Math.random());
+           
+           const mappedLook = lookFiltered.slice(0, 8).map(p => ({
+              id: p._id,
+              name: p.title,
+              brand: p.brand,
+              price: p.price,
+              rating: 4.7,
+              reviews: 85,
+              image: p.images?.[0] || RELATED_PRODUCTS[1].image
+           }));
+           // Fallback to relatedProducts if not enough diverse products
+           setCompleteLookProducts(mappedLook.length >= 2 ? mappedLook : relatedProducts);
         }
       } catch (err) {
         console.error(err);
@@ -456,7 +483,7 @@ export default function ProductDetailsPage() {
 
         {/* 3. ADDITIONAL SECTIONS */}
         <div className="mt-16 sm:mt-24 space-y-4">
-          <ProductCarousel title="Complete The Look" products={relatedProducts} />
+          <ProductCarousel title="Complete The Look" products={completeLookProducts} />
           <ProductCarousel title="Frequently Bought Together" products={[...relatedProducts].reverse()} />
         </div>
 
