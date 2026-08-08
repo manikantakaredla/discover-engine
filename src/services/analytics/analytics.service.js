@@ -89,7 +89,7 @@ export const getKpiMetrics = async () => {
       metrics: [
         { label: "Click-Through Rate", value: `${ctr.toFixed(1)}%`, trend: "+2.1%", isGood: true },
         { label: "Conversion Rate", value: `${cvr.toFixed(1)}%`, trend: "+1.2%", isGood: true },
-        { label: "Average Order Value", value: `$${aov.toFixed(2)}`, trend: "+$4.20", isGood: true },
+        { label: "Average Order Value", value: `₹${aov.toFixed(2)}`, trend: "+₹4.20", isGood: true },
         { label: "Total Views", value: views.toString(), trend: "+12", isGood: true },
         { label: "Feed Quality Score", value: `${feedQuality}/100`, trend: "+1", isGood: true },
         { label: "Total Clicks", value: clicks.toString(), trend: "+5", isGood: true },

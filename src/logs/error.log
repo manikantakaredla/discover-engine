@@ -384,3 +384,19 @@
     at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
     at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
     at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T02:05:58.414Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [404 Not Found] This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T02:05:58.904Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [404 Not Found] This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18

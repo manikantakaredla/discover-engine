@@ -96,7 +96,7 @@ const ProductCard = ({ product }) => {
         </h3>
         
         <div className="mt-1 flex items-center gap-2">
-          <span className="text-sm font-semibold text-slate-900">${product.price.toFixed(2)}</span>
+          <span className="text-sm font-semibold text-slate-900">₹{product.price.toFixed(2)}</span>
         </div>
       </div>
     </div>

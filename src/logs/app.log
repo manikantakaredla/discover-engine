@@ -489,3 +489,53 @@
 [2026-08-08T01:59:28.389Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
 [2026-08-08T01:59:28.693Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
 [2026-08-08T01:59:28.999Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T02:05:58.414Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [404 Not Found] This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T02:05:58.415Z] [INFO] Extracted Intent for "tent": {"query":"tent","category":"Any","brands":[],"tags":[],"priceRange":"Any"}
+[2026-08-08T02:05:58.469Z] [INFO] Narrow results (2). Applying broader fallback search...
+[2026-08-08T02:05:58.904Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [404 Not Found] This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T02:05:58.905Z] [INFO] Extracted Intent for "tent": {"query":"tent","category":"Any","brands":[],"tags":[],"priceRange":"Any"}
+[2026-08-08T02:05:58.941Z] [INFO] Narrow results (2). Applying broader fallback search...
+[2026-08-08T02:09:27.753Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T02:09:28.271Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
+[2026-08-08T02:09:28.569Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T02:09:28.900Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T02:09:41.317Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T02:09:41.792Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-00.32waqvz.mongodb.net
+[2026-08-08T02:09:42.105Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T02:09:42.423Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T02:09:46.191Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T02:09:46.638Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
+[2026-08-08T02:09:46.913Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T02:09:47.459Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T02:11:14.361Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T02:11:14.876Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-00.32waqvz.mongodb.net
+[2026-08-08T02:11:15.161Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T02:11:15.448Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T02:11:35.318Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T02:11:35.791Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
+[2026-08-08T02:11:36.094Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T02:11:36.425Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T02:13:19.459Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T02:13:19.952Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-02.32waqvz.mongodb.net
+[2026-08-08T02:13:20.232Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T02:13:20.543Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T03:08:22.831Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:08:23.331Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-02.32waqvz.mongodb.net
+[2026-08-08T03:08:23.620Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T03:08:23.937Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T03:08:33.316Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T03:08:33.503Z] [INFO] Successfully seeded 120 products.

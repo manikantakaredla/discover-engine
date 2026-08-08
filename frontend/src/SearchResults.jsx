@@ -14,7 +14,7 @@ function cn(...inputs) {
 const FILTERS = {
   categories: ["Running Shoes", "Apparel", "Accessories", "Electronics"],
   brands: ["Stride", "Velocity", "Aura", "Active", "Trek"],
-  priceRanges: ["Under $50", "$50 - $100", "$100 - $200", "Over $200"],
+  priceRanges: ["Under ₹4000", "₹4000 - ₹8000", "₹8000 - ₹16000", "Over ₹16000"],
 };
 
 // --- Sub Components ---
@@ -90,7 +90,7 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
         <h3 className="text-sm font-medium text-slate-900 leading-snug truncate">{product.name}</h3>
-        <span className="text-sm font-semibold text-slate-900">${product.price.toFixed(2)}</span>
+        <span className="text-sm font-semibold text-slate-900">₹{product.price.toFixed(2)}</span>
       </div>
     </div>
   );
@@ -192,10 +192,10 @@ export default function SearchResultsPage() {
       let matchPrice = true;
       if (selectedPrices.length > 0) {
         matchPrice = selectedPrices.some(range => {
-          if (range === "Under $50") return product.price < 50;
-          if (range === "$50 - $100") return product.price >= 50 && product.price <= 100;
-          if (range === "$100 - $200") return product.price > 100 && product.price <= 200;
-          if (range === "Over $200") return product.price > 200;
+          if (range === "Under ₹4000") return product.price < 4000;
+          if (range === "₹4000 - ₹8000") return product.price >= 4000 && product.price <= 8000;
+          if (range === "₹8000 - ₹16000") return product.price > 8000 && product.price <= 16000;
+          if (range === "Over ₹16000") return product.price > 16000;
           return true;
         });
       }

@@ -94,7 +94,7 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
         <h3 className="text-sm font-medium text-slate-900 leading-snug truncate">{product.name}</h3>
-        <span className="text-sm font-semibold text-slate-900">${product.price.toFixed(2)}</span>
+        <span className="text-sm font-semibold text-slate-900">₹{product.price.toFixed(2)}</span>
       </div>
     </div>
   );
@@ -271,7 +271,7 @@ export default function ProductDetailsPage() {
               </h1>
               
               <div className="flex items-center gap-4 mb-6">
-                <span className="text-2xl font-semibold text-slate-900">${currentProduct.price.toFixed(2)}</span>
+                <span className="text-2xl font-semibold text-slate-900">₹{currentProduct.price.toFixed(2)}</span>
                 <div className="h-6 w-px bg-slate-200" />
                 <div className="flex items-center gap-2 cursor-pointer group">
                   <div className="flex text-blue-600">
@@ -368,7 +368,7 @@ export default function ProductDetailsPage() {
                 onClick={() => alert(`Added ${currentProduct.name} to cart!`)}
                 className="w-full py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base shadow-xl shadow-blue-600/20 transition-all active:scale-[0.98]"
               >
-                Add to Cart — ${currentProduct.price.toFixed(2)}
+                Add to Cart — ₹{currentProduct.price.toFixed(2)}
               </button>
               <div className="flex gap-3">
                 <button className="flex-1 py-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-base shadow-lg transition-all active:scale-[0.98]">
