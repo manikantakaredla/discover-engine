@@ -393,7 +393,25 @@ export default function ProductDetailsPage() {
             {/* Action Buttons */}
             <div className="flex flex-col gap-3">
               <button 
-                onClick={() => alert(`Added ${currentProduct.name} to cart!`)}
+                onClick={() => {
+                  const cart = JSON.parse(localStorage.getItem('discover_cart') || '[]');
+                  const existing = cart.find(i => i._id === currentProduct._id);
+                  if (existing) {
+                    existing.quantity += 1;
+                  } else {
+                    cart.push({ ...currentProduct, quantity: 1 });
+                  }
+                  localStorage.setItem('discover_cart', JSON.stringify(cart));
+                  window.dispatchEvent(new Event('cart-updated'));
+                  
+                  // Track add_to_cart event for analytics
+                  apiClient.post('/analytics/track', { 
+                    eventType: 'add_to_cart', 
+                    productId: currentProduct._id 
+                  }).catch(console.error);
+
+                  window.location.hash = '#cart';
+                }}
                 className="w-full py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base shadow-xl shadow-blue-600/20 transition-all active:scale-[0.98]"
               >
                 Add to Cart — ₹{currentProduct.price.toFixed(2)}

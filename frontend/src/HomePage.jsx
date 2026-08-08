@@ -130,6 +130,7 @@ export default function HomePage() {
   const [feedData, setFeedData] = useState(null);
   const [allProducts, setAllProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -160,6 +161,17 @@ export default function HomePage() {
       setIsLoading(false);
     };
     fetchData();
+
+    const updateCartCount = () => {
+      try {
+        const items = JSON.parse(localStorage.getItem('discover_cart') || '[]');
+        setCartCount(items.reduce((acc, item) => acc + (item.quantity || 1), 0));
+      } catch (e) { setCartCount(0); }
+    };
+
+    updateCartCount();
+    window.addEventListener('cart-updated', updateCartCount);
+    return () => window.removeEventListener('cart-updated', updateCartCount);
   }, []);
 
   // Extract products from sections array
@@ -230,13 +242,15 @@ export default function HomePage() {
             <a href="#" className="hidden md:flex items-center gap-1 hover:text-yellow-400">
               <span className="font-semibold">More</span> <ChevronRight className="w-4 h-4 rotate-90" />
             </a>
-            <a href="#" className="flex items-center gap-2 hover:text-yellow-400 relative">
-              <ShoppingCart className="w-5 h-5" />
+            <button onClick={() => window.location.hash = '#cart'} className="flex items-center gap-2 hover:text-yellow-400 relative">
+              <ShoppingBag className="w-5 h-5" />
               <span className="hidden sm:inline font-semibold">Cart</span>
-              <span className="absolute -top-1.5 -left-2 bg-yellow-500 text-slate-900 text-[10px] font-bold px-1.5 rounded-full">
-                3
-              </span>
-            </a>
+              {cartCount > 0 && (
+                <span className="absolute -top-1.5 -left-2 bg-yellow-500 text-slate-900 text-[10px] font-bold px-1.5 rounded-full">
+                  {cartCount}
+                </span>
+              )}
+            </button>
           </div>
         </div>
       </header>

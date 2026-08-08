@@ -7,6 +7,8 @@ import ProductDetailsPage from './ProductDetails.jsx'
 import SearchResultsPage from './SearchResults.jsx'
 import AdminDashboard from './AdminDashboard.jsx'
 import KpiDashboard from './KpiDashboard.jsx'
+import CartPage from './CartPage.jsx'
+import CheckoutPage from './CheckoutPage.jsx'
 
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -23,6 +25,8 @@ function Root() {
         <a href="#login" className="text-slate-500 hover:text-blue-600">Login</a>
         <a href="#home" className="text-slate-500 hover:text-blue-600">Home</a>
         <a href="#product" className="text-slate-500 hover:text-blue-600">Product</a>
+        <a href="#cart" className="text-slate-500 hover:text-blue-600">Cart</a>
+        <a href="#checkout" className="text-slate-500 hover:text-blue-600">Checkout</a>
         <a href="#search" className="text-slate-500 hover:text-blue-600">Search</a>
         <a href="#admin" className="text-slate-500 hover:text-blue-600">Admin</a>
         <a href="#kpi" className="text-slate-500 hover:text-blue-600">KPIs</a>
@@ -39,6 +43,8 @@ function Root() {
         >
           {currentPath.split('?')[0] === '#home' ? <HomePage /> 
             : currentPath.split('?')[0] === '#product' ? <ProductDetailsPage /> 
+            : currentPath.split('?')[0] === '#cart' ? <CartPage /> 
+            : currentPath.split('?')[0] === '#checkout' ? <CheckoutPage /> 
             : currentPath.split('?')[0] === '#search' ? <SearchResultsPage /> 
             : currentPath.split('?')[0] === '#admin' ? <AdminDashboard /> 
             : currentPath.split('?')[0] === '#kpi' ? <KpiDashboard /> 

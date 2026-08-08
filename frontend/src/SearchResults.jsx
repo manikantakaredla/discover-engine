@@ -126,6 +126,7 @@ export default function SearchResultsPage() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState({ aiSuggested: [], all: [] });
   const [isLoading, setIsLoading] = useState(true);
+  const [cartCount, setCartCount] = useState(0);
 
   // Filters state
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -136,6 +137,13 @@ export default function SearchResultsPage() {
     setter(prev => prev.includes(option) ? prev.filter(item => item !== option) : [...prev, option]);
   };
 
+  const updateCartCount = () => {
+    try {
+      const items = JSON.parse(localStorage.getItem('discover_cart') || '[]');
+      setCartCount(items.reduce((acc, item) => acc + (item.quantity || 1), 0));
+    } catch (e) { setCartCount(0); }
+  };
+
   useEffect(() => {
     // Parse ?q=... from hash #search?q=shoes
     const hash = window.location.hash;
@@ -143,6 +151,9 @@ export default function SearchResultsPage() {
     const searchQuery = qParam ? qParam : "Running Shoes";
     const decodedQuery = decodeURIComponent(searchQuery);
     setQuery(decodedQuery);
+
+    updateCartCount();
+    window.addEventListener('cart-updated', updateCartCount);
 
     const fetchSearch = async () => {
       setIsLoading(true);
@@ -188,7 +199,10 @@ export default function SearchResultsPage() {
         }
     };
     window.addEventListener('hashchange', handleHash);
-    return () => window.removeEventListener('hashchange', handleHash);
+    return () => {
+      window.removeEventListener('hashchange', handleHash);
+      window.removeEventListener('cart-updated', updateCartCount);
+    };
   }, []);
 
   // Filter Logic
@@ -254,7 +268,7 @@ export default function SearchResultsPage() {
           <div className="flex items-center gap-1 sm:gap-2">
             <IconButton icon={Heart} />
             <IconButton icon={User} />
-            <IconButton icon={ShoppingBag} badge="3" />
+            <IconButton icon={ShoppingBag} badge={cartCount > 0 ? cartCount : undefined} />
           </div>
         </div>
       </header>
