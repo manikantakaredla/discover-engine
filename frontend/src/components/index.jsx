@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Search, ShoppingBag, Heart, User, Menu, Star, Plus, Target, 
-  Sparkles, X, ChevronRight, AlertCircle, PackageX, Check
+  Sparkles, X, ChevronRight, AlertCircle, PackageX, Check, Filter
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -243,8 +243,8 @@ export const MissionCard = ({ intent, confidence, onDismiss, onRefine }) => (
     </div>
     <div className="mt-4 sm:mt-0 flex items-center gap-3 w-full sm:w-auto">
       <motion.button whileTap={{ scale: 0.95 }} onClick={onRefine} className="flex-1 sm:flex-none px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 shadow-sm">
-        Refine
-      </button>
+        <Filter className="w-4 h-4 mr-2 inline" /> Refine Intent
+      </motion.button>
       <motion.button whileTap={{ scale: 0.9 }} onClick={onDismiss} className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg">
         <X className="w-4 h-4" />
       </motion.button>
