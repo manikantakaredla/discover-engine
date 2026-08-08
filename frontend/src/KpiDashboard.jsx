@@ -135,10 +135,10 @@ export default function KpiDashboard() {
               <span className="font-bold text-slate-900 tracking-tight">Business KPIs</span>
             </div>
             <nav className="hidden md:flex items-center gap-1 text-sm font-medium">
-              <a href="#" className="px-3 py-1.5 rounded-md bg-slate-100 text-slate-900">Today</a>
-              <a href="#" className="px-3 py-1.5 rounded-md text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors">7d</a>
-              <a href="#" className="px-3 py-1.5 rounded-md text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors">4w</a>
-              <a href="#" className="px-3 py-1.5 rounded-md text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors">12m</a>
+              <a href="#kpi" className="px-3 py-1.5 rounded-md bg-slate-100 text-slate-900">Today</a>
+              <a href="#kpi" className="px-3 py-1.5 rounded-md text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors">7d</a>
+              <a href="#kpi" className="px-3 py-1.5 rounded-md text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors">4w</a>
+              <a href="#kpi" className="px-3 py-1.5 rounded-md text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors">12m</a>
             </nav>
           </div>
           <div className="flex items-center gap-3">

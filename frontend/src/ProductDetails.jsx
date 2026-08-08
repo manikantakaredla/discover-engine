@@ -119,11 +119,76 @@ const ProductCarousel = ({ title, products }) => (
 );
 
 // --- Main Page ---
+import { useEffect } from 'react';
+import { apiClient } from './api/client.js';
+
 export default function ProductDetailsPage() {
   const [activeImage, setActiveImage] = useState(0);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [product, setProduct] = useState(null);
+  const [relatedProducts, setRelatedProducts] = useState(RELATED_PRODUCTS);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Added defaults since API products don't have these mock arrays
   const [selectedColor, setSelectedColor] = useState(PRODUCT.colors[0]);
   const [selectedSize, setSelectedSize] = useState(PRODUCT.sizes[2]);
-  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      setIsLoading(true);
+      const hash = window.location.hash;
+      const idParam = hash.split('id=')[1];
+      
+      try {
+        if (idParam) {
+          const data = await apiClient.get(`/products/${idParam}`);
+          if (data) {
+            setProduct({
+              id: data._id,
+              name: data.title,
+              brand: data.brand,
+              price: data.price,
+              rating: 4.8,
+              reviews: 150,
+              description: data.description,
+              images: data.images?.length ? data.images : PRODUCT.images,
+              colors: PRODUCT.colors,
+              sizes: PRODUCT.sizes,
+            });
+          } else {
+            setProduct(PRODUCT);
+          }
+        } else {
+          setProduct(PRODUCT);
+        }
+
+        // Fetch real related products
+        const relatedData = await apiClient.get('/products');
+        if (relatedData && relatedData.products) {
+           const mappedRelated = relatedData.products.slice(0, 8).map(p => ({
+              id: p._id,
+              name: p.title,
+              brand: p.brand,
+              price: p.price,
+              rating: 4.5,
+              reviews: 120,
+              image: p.images?.[0] || RELATED_PRODUCTS[0].image
+           }));
+           setRelatedProducts(mappedRelated);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+      setIsLoading(false);
+    };
+    fetchProduct();
+  }, [window.location.hash]); // Added hash dependency to trigger on same-page hash changes safely
+
+  if (isLoading) {
+    return <div className="min-h-screen flex items-center justify-center bg-white"><div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" /></div>;
+  }
+
+  const currentProduct = product || PRODUCT;
 
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
@@ -153,13 +218,13 @@ export default function ProductDetailsPage() {
         
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs font-medium text-slate-500 mb-8">
-          <a href="#" className="hover:text-slate-900 transition-colors">Home</a>
+          <a href="#home" className="hover:text-slate-900 transition-colors">Home</a>
           <ChevronRight className="w-3 h-3" />
-          <a href="#" className="hover:text-slate-900 transition-colors">Men</a>
+          <a href="#search?q=Men" className="hover:text-slate-900 transition-colors">Men</a>
           <ChevronRight className="w-3 h-3" />
-          <a href="#" className="hover:text-slate-900 transition-colors">Shoes</a>
+          <a href="#search?q=Shoes" className="hover:text-slate-900 transition-colors">Shoes</a>
           <ChevronRight className="w-3 h-3" />
-          <span className="text-slate-900">{PRODUCT.name}</span>
+          <span className="text-slate-900">{currentProduct.name}</span>
         </nav>
 
         {/* 2. PRODUCT MAIN SECTION */}
@@ -170,8 +235,8 @@ export default function ProductDetailsPage() {
             {/* Main Image */}
             <div className="relative aspect-[4/5] sm:aspect-square bg-slate-50 rounded-[32px] overflow-hidden border border-slate-100">
               <img 
-                src={PRODUCT.images[activeImage]} 
-                alt={PRODUCT.name} 
+                src={currentProduct.images[activeImage]} 
+                alt={currentProduct.name} 
                 className="w-full h-full object-cover transition-opacity duration-300"
               />
               <button className="absolute top-4 right-4 p-3 rounded-full bg-white/80 backdrop-blur shadow-sm hover:bg-white transition-all text-slate-700">
@@ -181,7 +246,7 @@ export default function ProductDetailsPage() {
             
             {/* Thumbnails */}
             <div className="grid grid-cols-4 gap-4">
-              {PRODUCT.images.map((img, idx) => (
+              {currentProduct.images.map((img, idx) => (
                 <button 
                   key={idx}
                   onClick={() => setActiveImage(idx)}
@@ -200,28 +265,28 @@ export default function ProductDetailsPage() {
           <div className="lg:col-span-5 flex flex-col">
             
             <div className="mb-8">
-              <h2 className="text-sm font-bold tracking-widest text-slate-500 uppercase mb-2">{PRODUCT.brand}</h2>
+              <h2 className="text-sm font-bold tracking-widest text-slate-500 uppercase mb-2">{currentProduct.brand}</h2>
               <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4 leading-tight">
-                {PRODUCT.name}
+                {currentProduct.name}
               </h1>
               
               <div className="flex items-center gap-4 mb-6">
-                <span className="text-2xl font-semibold text-slate-900">${PRODUCT.price.toFixed(2)}</span>
+                <span className="text-2xl font-semibold text-slate-900">${currentProduct.price.toFixed(2)}</span>
                 <div className="h-6 w-px bg-slate-200" />
                 <div className="flex items-center gap-2 cursor-pointer group">
                   <div className="flex text-blue-600">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className={cn("w-4 h-4", i < Math.floor(PRODUCT.rating) ? "fill-current" : "fill-transparent")} />
+                      <Star key={i} className={cn("w-4 h-4", i < Math.floor(currentProduct.rating) ? "fill-current" : "fill-transparent")} />
                     ))}
                   </div>
                   <span className="text-sm font-medium text-slate-600 group-hover:text-blue-600 transition-colors">
-                    {PRODUCT.rating} ({PRODUCT.reviews} Reviews)
+                    {currentProduct.rating} ({currentProduct.reviews} Reviews)
                   </span>
                 </div>
               </div>
 
               <p className="text-base text-slate-600 leading-relaxed">
-                {PRODUCT.description}
+                {currentProduct.description}
               </p>
             </div>
 
@@ -256,7 +321,7 @@ export default function ProductDetailsPage() {
                 <span className="text-sm text-slate-500">{selectedColor}</span>
               </div>
               <div className="flex flex-wrap gap-3">
-                {PRODUCT.colors.map(color => (
+                {currentProduct.colors.map(color => (
                   <button 
                     key={color}
                     onClick={() => setSelectedColor(color)}
@@ -280,7 +345,7 @@ export default function ProductDetailsPage() {
                 <button className="text-sm font-medium text-blue-600 hover:underline">Size Guide</button>
               </div>
               <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
-                {PRODUCT.sizes.map(size => (
+                {currentProduct.sizes.map(size => (
                   <button 
                     key={size}
                     onClick={() => setSelectedSize(size)}
@@ -300,10 +365,10 @@ export default function ProductDetailsPage() {
             {/* Action Buttons */}
             <div className="flex flex-col gap-3">
               <button 
-                onClick={() => alert(`Added ${PRODUCT.name} to cart!`)}
+                onClick={() => alert(`Added ${currentProduct.name} to cart!`)}
                 className="w-full py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base shadow-xl shadow-blue-600/20 transition-all active:scale-[0.98]"
               >
-                Add to Cart — ${PRODUCT.price.toFixed(2)}
+                Add to Cart — ${currentProduct.price.toFixed(2)}
               </button>
               <div className="flex gap-3">
                 <button className="flex-1 py-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-base shadow-lg transition-all active:scale-[0.98]">
@@ -345,8 +410,8 @@ export default function ProductDetailsPage() {
 
         {/* 3. ADDITIONAL SECTIONS */}
         <div className="mt-16 sm:mt-24 space-y-4">
-          <ProductCarousel title="Complete The Look" products={RELATED_PRODUCTS} />
-          <ProductCarousel title="Frequently Bought Together" products={[...RELATED_PRODUCTS].reverse()} />
+          <ProductCarousel title="Complete The Look" products={relatedProducts} />
+          <ProductCarousel title="Frequently Bought Together" products={[...relatedProducts].reverse()} />
         </div>
 
       </main>

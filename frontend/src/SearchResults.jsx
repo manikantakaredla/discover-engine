@@ -153,7 +153,7 @@ export default function SearchResultsPage() {
         const all = data.candidates.slice(4).map(c => ({
            id: c._id, name: c.title, brand: c.brand, price: c.price, rating: 4.5, reviews: 80, image: c.images?.[0] || ALL_RESULTS[0].image
         }));
-        setResults({ aiSuggested: ai.length > 0 ? ai : AI_SUGGESTED, all: all.length > 0 ? all : ALL_RESULTS });
+        setResults({ aiSuggested: ai, all: all });
       } else {
         // Fallback
         setResults({ aiSuggested: AI_SUGGESTED, all: ALL_RESULTS });

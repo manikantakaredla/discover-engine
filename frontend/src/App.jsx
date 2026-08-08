@@ -194,7 +194,7 @@ export default function LoginPage() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password" className="text-slate-700">Password</Label>
-                  <a href="#" className="text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors">
+                  <a href="#login" className="text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors">
                     Forgot password?
                   </a>
                 </div>
@@ -243,7 +243,7 @@ export default function LoginPage() {
 
           <p className="mt-8 text-center text-sm text-slate-500">
             Don't have an account?{' '}
-            <a href="#" className="font-semibold text-blue-600 hover:text-blue-700 transition-colors">
+            <a href="#login" className="font-semibold text-blue-600 hover:text-blue-700 transition-colors">
               Contact Sales
             </a>
           </p>

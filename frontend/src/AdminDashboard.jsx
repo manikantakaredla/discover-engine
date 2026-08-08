@@ -153,10 +153,10 @@ export default function AdminDashboard() {
             <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 text-[10px] font-bold tracking-widest uppercase ml-2">Live</span>
           </div>
           <div className="flex items-center gap-4 text-sm font-medium text-slate-500">
-            <a href="#" className="hover:text-slate-900 transition-colors">Overview</a>
-            <a href="#" className="hover:text-slate-900 transition-colors">Metrics</a>
-            <a href="#" className="text-slate-900 transition-colors">Traces</a>
-            <a href="#" className="hover:text-slate-900 transition-colors">Logs</a>
+            <a href="#admin" className="hover:text-slate-900 transition-colors">Overview</a>
+            <a href="#admin" className="hover:text-slate-900 transition-colors">Metrics</a>
+            <a href="#admin" className="text-slate-900 transition-colors">Traces</a>
+            <a href="#admin" className="hover:text-slate-900 transition-colors">Logs</a>
           </div>
         </div>
       </header>

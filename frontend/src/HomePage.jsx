@@ -137,8 +137,8 @@ export default function HomePage() {
 
   useEffect(() => {
     const fetchFeed = async () => {
-      // Fetch from backend /api/v1/recommendations
-      const data = await apiClient.get('/recommendations');
+      // Fetch from backend /api/v1/recommendations/home
+      const data = await apiClient.get('/recommendations/home');
       if (data) {
         setFeedData(data);
       }
@@ -147,8 +147,13 @@ export default function HomePage() {
     fetchFeed();
   }, []);
 
+  // Extract products from sections array
+  const getSectionProducts = (type) => {
+    return feedData?.sections?.find(s => s.type === type)?.products || null;
+  };
+
   // Use dummy data as fallback if backend is slow/failing for the demo
-  const displayProducts = feedData?.feed?.recommended?.map(item => ({
+  const displayProducts = getSectionProducts('recommended')?.map(item => ({
     id: item._id,
     name: item.title,
     brand: item.brand,
@@ -158,7 +163,7 @@ export default function HomePage() {
     image: item.images?.[0] || DUMMY_PRODUCTS[0].image
   })) || DUMMY_PRODUCTS;
 
-  const exploreProducts = feedData?.feed?.explore?.map(item => ({
+  const exploreProducts = getSectionProducts('explore')?.map(item => ({
     id: item._id,
     name: item.title,
     brand: item.brand,
@@ -168,7 +173,7 @@ export default function HomePage() {
     image: item.images?.[0] || DUMMY_PRODUCTS[0].image
   })) || DUMMY_PRODUCTS;
 
-  const newArrivals = feedData?.feed?.newArrivals?.map(item => ({
+  const newArrivals = getSectionProducts('trending')?.map(item => ({
     id: item._id,
     name: item.title,
     brand: item.brand,
@@ -190,7 +195,7 @@ export default function HomePage() {
             <button className="md:hidden p-2 -ml-2 text-slate-600">
               <Menu className="w-5 h-5" />
             </button>
-            <a href="/" className="flex items-center gap-2">
+            <a href="#home" className="flex items-center gap-2">
               <div className="w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center">
                 <ShoppingBag className="w-4 h-4" />
               </div>
