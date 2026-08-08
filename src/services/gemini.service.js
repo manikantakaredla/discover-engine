@@ -4,14 +4,34 @@ import { logger } from '../config/logger.js';
 
 let genAI;
 let model;
+let embeddingModel;
 
 if (env.geminiApiKey) {
   genAI = new GoogleGenerativeAI(env.geminiApiKey);
   // Specify the model required by the prompt
-  model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+  model = genAI.getGenerativeModel({ model: "gemini-3.6-flash" });
+  embeddingModel = genAI.getGenerativeModel({ model: "gemini-embedding-2" });
 } else {
   logger.warn('GEMINI_API_KEY is not set in environment variables.');
 }
+
+/**
+ * Generates a vector embedding for a given text.
+ * @param {string} text The text to embed.
+ * @returns {Promise<number[]>} The embedding vector.
+ */
+export const generateEmbedding = async (text) => {
+  if (!embeddingModel) {
+    throw new Error('Gemini embedding model is not initialized (API key missing).');
+  }
+  try {
+    const result = await embeddingModel.embedContent(text);
+    return result.embedding.values;
+  } catch (error) {
+    logger.error('Error generating embedding:', error);
+    return [];
+  }
+};
 
 /**
  * Extracts semantic understanding from a user query using Gemini.

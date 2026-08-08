@@ -539,3 +539,159 @@
 [2026-08-08T03:08:23.937Z] [INFO] Successfully seeded 120 products.
 [2026-08-08T03:08:33.316Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
 [2026-08-08T03:08:33.503Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T03:19:50.433Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [404 Not Found] This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T03:19:50.434Z] [INFO] Extracted Intent for "black bag": {"query":"black bag","category":"Any","brands":[],"tags":[],"priceRange":"Any"}
+[2026-08-08T03:19:50.484Z] [INFO] Narrow results (0). Applying broader fallback search...
+[2026-08-08T03:19:50.954Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [404 Not Found] This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:45:20)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:18:18)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T03:19:50.956Z] [INFO] Extracted Intent for "black bag": {"query":"black bag","category":"Any","brands":[],"tags":[],"priceRange":"Any"}
+[2026-08-08T03:19:50.994Z] [INFO] Narrow results (0). Applying broader fallback search...
+[2026-08-08T03:27:12.889Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:27:13.336Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-00.32waqvz.mongodb.net
+[2026-08-08T03:27:13.626Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T03:27:13.952Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T03:27:23.395Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:27:23.863Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
+[2026-08-08T03:27:24.171Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T03:27:24.499Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T03:28:26.671Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:28:27.150Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
+[2026-08-08T03:28:27.476Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T03:28:28.053Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T03:28:30.861Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:28:31.308Z] [ERROR] Error generating embedding: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent: [404 Not Found] models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async embedContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:1313:22)
+    at async generateEmbedding (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:28:20)
+    at async Promise.all (index 0)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T03:28:31.543Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [404 Not Found] This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T03:28:31.544Z] [WARN] Failed to generate embedding for query. Falling back to empty search.
+[2026-08-08T03:28:31.564Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:28:31.745Z] [ERROR] Error generating embedding: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent: [404 Not Found] models/text-embedding-004 is not found for API version v1beta, or is not supported for embedContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async embedContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:1313:22)
+    at async generateEmbedding (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:28:20)
+    at async Promise.all (index 0)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T03:28:32.000Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [404 Not Found] This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T03:28:32.000Z] [WARN] Failed to generate embedding for query. Falling back to empty search.
+[2026-08-08T03:29:08.797Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:29:09.342Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
+[2026-08-08T03:29:09.638Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T03:29:09.954Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T03:29:15.746Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:29:16.292Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
+[2026-08-08T03:29:16.913Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T03:29:17.758Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T03:34:02.626Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:34:03.152Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [404 Not Found] This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T03:34:03.323Z] [INFO] Found 0 semantic matches for "black bag"
+[2026-08-08T03:34:08.801Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:34:09.253Z] [ERROR] Error generating semantic understanding from Gemini: - Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [404 Not Found] This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.
+    at handleResponseNotOk (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/manik/Music/discover%20engine/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async extractSearchIntent (file:///C:/Users/manik/Music/discover%20engine/src/services/gemini.service.js:65:20)
+    at async Promise.all (index 1)
+    at async searchProducts (file:///C:/Users/manik/Music/discover%20engine/src/services/search/search.service.js:33:36)
+    at async file:///C:/Users/manik/Music/discover%20engine/src/controllers/search.controller.js:27:18
+[2026-08-08T03:34:09.409Z] [INFO] Found 0 semantic matches for "black bag"
+[2026-08-08T03:34:25.302Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:34:25.821Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
+[2026-08-08T03:34:26.122Z] [INFO] Wiping existing products to re-seed with 120 diverse products...
+[2026-08-08T03:34:26.671Z] [INFO] Successfully seeded 120 products.
+[2026-08-08T03:34:31.137Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:34:34.239Z] [INFO] Found 0 semantic matches for "black bag"
+[2026-08-08T03:35:13.176Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:35:16.327Z] [INFO] Found 0 semantic matches for "black bag"
+[2026-08-08T03:35:33.839Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:35:34.357Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-02.32waqvz.mongodb.net
+[2026-08-08T03:36:07.532Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:36:11.225Z] [INFO] Found 0 semantic matches for "black bag"
+[2026-08-08T03:36:20.459Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:36:23.214Z] [INFO] Found 0 semantic matches for "black bag"
+[2026-08-08T03:36:28.414Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:36:31.411Z] [INFO] Found 0 semantic matches for "black bag"
+[2026-08-08T03:36:39.413Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:36:40.028Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
+[2026-08-08T03:36:49.112Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:36:52.046Z] [INFO] Found 0 semantic matches for "black bag" (highest score: 0)
+[2026-08-08T03:38:51.604Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:38:55.414Z] [INFO] Found 20 semantic matches for "black bag" (highest score: 0.5224588414731951)
+[2026-08-08T03:39:05.636Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:39:08.470Z] [INFO] Found 0 semantic matches for "black bag" (highest score: 0)
+[2026-08-08T03:39:29.427Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:39:30.056Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-00.32waqvz.mongodb.net
+[2026-08-08T03:39:35.074Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:39:38.236Z] [INFO] Query embedding length: 3072, First product embedding length: 0
+[2026-08-08T03:39:38.237Z] [INFO] Found 0 semantic matches for "black bag" (highest score: 0)
+[2026-08-08T03:40:03.572Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:40:04.135Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-00.32waqvz.mongodb.net
+[2026-08-08T03:40:34.601Z] [INFO] Performing vector search for query: "black bag"
+[2026-08-08T03:40:38.372Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:40:38.382Z] [INFO] Found 20 semantic matches for "black bag" (highest score: 0.46956737879420085)
+[2026-08-08T03:41:41.457Z] [INFO] Performing vector search for query: "black shirt"
+[2026-08-08T03:41:45.817Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:41:45.822Z] [INFO] Found 20 semantic matches for "black shirt" (highest score: 0.5124649004114376)
+[2026-08-08T03:41:45.838Z] [INFO] Performing vector search for query: "black shirt"
+[2026-08-08T03:41:49.091Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:41:49.098Z] [INFO] Found 20 semantic matches for "black shirt" (highest score: 0.5124649004114376)
+[2026-08-08T03:42:46.383Z] [INFO] Performing vector search for query: "black shirt"
+[2026-08-08T03:42:49.836Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:42:49.838Z] [INFO] Found 20 semantic matches for "black shirt" (highest score: 0.5124649004114376)
+[2026-08-08T03:44:11.289Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:44:11.779Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-01.32waqvz.mongodb.net
+[2026-08-08T03:46:51.807Z] [INFO] Performing vector search for query: "black shirt"
+[2026-08-08T03:46:56.441Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:46:56.451Z] [INFO] Found 20 semantic matches for "black shirt" (highest score: 0.6785796702261799)
+[2026-08-08T03:48:36.400Z] [INFO] Performing vector search for query: "black shirt"
+[2026-08-08T03:48:40.003Z] [INFO] Query embedding length: 3072, First product embedding length: 3072
+[2026-08-08T03:50:24.176Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:50:24.826Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-02.32waqvz.mongodb.net
+[2026-08-08T03:50:32.458Z] [INFO] Server running in development mode on port 5000
+[2026-08-08T03:50:32.960Z] [INFO] MongoDB Connected: ac-q06cfqu-shard-00-00.32waqvz.mongodb.net

@@ -1,10 +1,23 @@
 import Product from '../../models/Product.model.js';
-import { extractSearchIntent } from '../gemini.service.js';
+import { extractSearchIntent, generateEmbedding } from '../gemini.service.js';
 import { logger } from '../../config/logger.js';
 
+const cosineSimilarity = (vecA, vecB) => {
+  if (!vecA || !vecB || !vecA.length || !vecB.length || vecA.length !== vecB.length) return 0;
+  let dotProduct = 0;
+  let normA = 0;
+  let normB = 0;
+  for (let i = 0; i < vecA.length; i++) {
+    dotProduct += vecA[i] * vecB[i];
+    normA += vecA[i] * vecA[i];
+    normB += vecB[i] * vecB[i];
+  }
+  if (normA === 0 || normB === 0) return 0;
+  return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+};
+
 /**
- * Perform a semantic-like search using Gemini to understand intent,
- * and MongoDB standard queries to fetch products.
+ * Perform a true semantic search using Gemini text embeddings.
  * 
  * @param {string} rawQuery The original user search string.
  * @returns {Promise<Object>} An object containing the extracted query intent and found products.
@@ -14,89 +27,55 @@ export const searchProducts = async (rawQuery) => {
     throw new Error('Invalid search query');
   }
 
-  // 1. Extract semantic intent via Gemini
-  const intent = await extractSearchIntent(rawQuery);
-  logger.info(`Extracted Intent for "${rawQuery}": ${JSON.stringify(intent)}`);
+  logger.info(`Performing vector search for query: "${rawQuery}"`);
 
-  // 2. Build MongoDB query
-  const queryFilter = {};
+  // 1. Fetch user query embedding & structured intent in parallel
+  const [queryEmbedding, intent] = await Promise.all([
+    generateEmbedding(rawQuery),
+    extractSearchIntent(rawQuery)
+  ]);
 
-  // If a specific category was identified (and it's not 'Any'), filter by it.
-  // Assuming intent.category might be slightly off, we use a regex.
-  if (intent.category && intent.category !== 'Any') {
-    queryFilter.category = { $regex: new RegExp(intent.category, 'i') };
+  if (!queryEmbedding || queryEmbedding.length === 0) {
+    logger.warn('Failed to generate embedding for query. Falling back to empty search.');
+    return { query: intent, products: [] };
   }
 
-  // Ensure brands is an array
-  const brandsArr = Array.isArray(intent.brands) ? intent.brands : (typeof intent.brands === 'string' && intent.brands.trim() !== '' ? [intent.brands] : []);
-  if (brandsArr.length > 0) {
-    queryFilter.brand = { $in: brandsArr.map(b => new RegExp(`^${b}$`, 'i')) };
+  // 2. Fetch all active products (MVP approach for semantic search without Atlas Vector Index)
+  // In a real production app with millions of items, you MUST use MongoDB Atlas Vector Search ($vectorSearch).
+  const allProducts = await Product.find({ status: 'active', isDeleted: false }).lean();
+  
+  if (allProducts.length > 0) {
+    logger.info(`Query embedding length: ${queryEmbedding.length}, First product embedding length: ${allProducts[0].embedding ? allProducts[0].embedding.length : 'none'}`);
   }
 
-  // Ensure tags is an array
-  const tagsArr = Array.isArray(intent.tags) ? intent.tags : (typeof intent.tags === 'string' && intent.tags.trim() !== '' ? [intent.tags] : []);
-  if (tagsArr.length > 0) {
-    const tagRegexes = tagsArr.map(t => new RegExp(t, 'i'));
-    queryFilter.$or = [
-      { tags: { $in: tagRegexes } },
-      { title: { $in: tagRegexes } },
-      { description: { $in: tagRegexes } }
-    ];
-  }
-
-  // If we couldn't extract any specific filters, fallback to a basic text search
-  if (Object.keys(queryFilter).length === 0) {
-    queryFilter.$or = [
-      { title: { $regex: new RegExp(rawQuery, 'i') } },
-      { description: { $regex: new RegExp(rawQuery, 'i') } },
-      { tags: { $regex: new RegExp(rawQuery, 'i') } }
-    ];
-  }
-
-  // Handle Price Range roughly
-  if (intent.priceRange && typeof intent.priceRange === 'string') {
-    const range = intent.priceRange.toLowerCase();
-    if (range === 'low') {
-      queryFilter.price = { ...queryFilter.price, $lte: 50 };
-    } else if (range === 'medium') {
-      queryFilter.price = { ...queryFilter.price, $gt: 50, $lte: 150 };
-    } else if (range === 'high') {
-      queryFilter.price = { ...queryFilter.price, $gt: 150 };
+  // 3. Compute cosine similarity between query and every product
+  const scoredProducts = allProducts.map(product => {
+    let score = 0;
+    if (product.embedding && product.embedding.length > 0) {
+      score = cosineSimilarity(queryEmbedding, product.embedding);
     }
-  }
+    return { ...product, score };
+  });
 
-  // 3. Execute Mongo Query
-  let products = await Product.find(queryFilter)
-    .sort({ rating: -1, reviewCount: -1 })
-    .limit(20)
-    .lean();
+  // 4. Sort by highest similarity
+  scoredProducts.sort((a, b) => b.score - a.score);
 
-  // 4. Fallback if results are too narrow (to ensure UI doesn't look empty for the demo)
-  if (products.length < 8) {
-    logger.info(`Narrow results (${products.length}). Applying broader fallback search...`);
-    const broadFilter = {
-      $or: [
-        { title: { $regex: new RegExp(rawQuery.split(' ')[0], 'i') } },
-        { description: { $regex: new RegExp(rawQuery.split(' ')[0], 'i') } },
-        { tags: { $regex: new RegExp(rawQuery.split(' ')[0], 'i') } },
-        { category: { $regex: new RegExp(rawQuery.split(' ')[0], 'i') } }
-      ]
-    };
-    
-    // Combine existing products with new broader products (avoid duplicates)
-    const broaderProducts = await Product.find(broadFilter)
-      .sort({ rating: -1 })
-      .limit(20 - products.length)
-      .lean();
-      
-    const existingIds = new Set(products.map(p => p._id.toString()));
-    const uniqueNewProducts = broaderProducts.filter(p => !existingIds.has(p._id.toString()));
-    
-    products = [...products, ...uniqueNewProducts];
-  }
+  // 5. Filter out completely irrelevant results (score threshold) 
+  // and take top 20
+  const topProducts = scoredProducts
+    .filter(p => p.score > 0.3) // threshold to ensure quality matches
+    .slice(0, 20);
+
+  logger.info(`Found ${topProducts.length} semantic matches for "${rawQuery}" (highest score: ${topProducts.length > 0 ? topProducts[0].score : 0})`);
+
+  // Clean up the response (remove the heavy embedding array)
+  const cleanProducts = topProducts.map(p => {
+    const { embedding, score, ...clean } = p;
+    return clean;
+  });
 
   return {
-    query: intent,
-    products
+    query: intent, // We still return the extracted intent for UI context / KPI tracking
+    products: cleanProducts
   };
 };

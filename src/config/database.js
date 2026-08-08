@@ -18,8 +18,8 @@ export const connectDB = async (retries = 5, delay = 5000) => {
       });
       logger.info(`MongoDB Connected: ${conn.connection.host}`);
       
-      // Seed database automatically for the MVP
-      await seedDatabase();
+      // Seed database automatically for the MVP (DISABLED TO PRESERVE EMBEDDINGS)
+      // await seedDatabase();
       return;
     } catch (error) {
       retries -= 1;

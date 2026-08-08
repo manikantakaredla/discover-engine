@@ -1,48 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-  Search, ShoppingBag, Heart, User, Menu, 
-  ChevronRight, Star, Plus, Target, Sparkles, X
+  Search, ShoppingCart, Heart, User, Menu, 
+  ChevronRight, Star, Plus, MapPin, Zap
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { apiClient } from './api/client.js';
 
-// --- Utility ---
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-// --- Dummy Data ---
-const DUMMY_PRODUCTS = [
-  { id: 1, name: "Ultra-Light Workout Tee", brand: "Velocity", price: 45.00, rating: 4.8, reviews: 124, image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80" },
-  { id: 2, name: "Pro Compression Tights", brand: "Aura", price: 89.00, rating: 4.9, reviews: 89, image: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=500&q=80" },
-  { id: 3, name: "Cloud-Step Running Shoes", brand: "Stride", price: 145.00, rating: 4.7, reviews: 312, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80" },
-  { id: 4, name: "Hydration Flask 32oz", brand: "Aqua", price: 35.00, rating: 4.6, reviews: 56, image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&q=80" },
-  { id: 5, name: "Resistance Band Set", brand: "Flex", price: 24.00, rating: 4.8, reviews: 432, image: "https://images.unsplash.com/photo-1598266663412-7bb88e634794?w=500&q=80" },
-  { id: 6, name: "Smart Fitness Watch", brand: "Pulse", price: 199.00, rating: 4.9, reviews: 892, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80" }
-];
+// --- Flipkart Specific Components ---
 
-// --- Components ---
+const TopCategoryBar = () => {
+  const categories = [
+    { name: "Top Offers", img: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=150&q=80" },
+    { name: "Mobiles & Tablets", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=150&q=80" },
+    { name: "Electronics", img: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=150&q=80" },
+    { name: "TVs & Appliances", img: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=150&q=80" },
+    { name: "Fashion", img: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=150&q=80" },
+    { name: "Beauty", img: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=150&q=80" },
+    { name: "Home & Kitchen", img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=150&q=80" },
+    { name: "Furniture", img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=150&q=80" },
+    { name: "Travel", img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=150&q=80" },
+  ];
 
-const IconButton = ({ icon: Icon, badge, className }) => (
-  <button className={cn("relative p-2 rounded-full hover:bg-slate-100 transition-colors text-slate-700", className)}>
-    <Icon className="w-5 h-5" strokeWidth={2} />
-    {badge && (
-      <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[9px] font-bold text-white">
-        {badge}
-      </span>
-    )}
-  </button>
-);
+  return (
+    <div className="bg-white shadow-sm mt-1 mb-2 overflow-x-auto hide-scrollbar">
+      <div className="max-w-[1600px] mx-auto px-4 py-3 flex gap-8 justify-between min-w-max">
+        {categories.map((cat, i) => (
+          <div key={i} className="flex flex-col items-center gap-2 cursor-pointer group">
+            <div className="w-16 h-16 rounded-full overflow-hidden bg-slate-50">
+              <img src={cat.img} alt={cat.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+            </div>
+            <span className="text-sm font-medium text-slate-800">{cat.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
-const ProductCard = ({ product }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
+const FlipkartCard = ({ product }) => {
+  // Generate a fake original price and discount for the "deal" effect
+  const discount = Math.floor(Math.random() * 40) + 10; // 10% to 50%
+  const originalPrice = Math.floor(product.price / (1 - (discount / 100)));
 
   return (
     <div 
-      className="group flex flex-col min-w-[220px] max-w-[220px] sm:min-w-[260px] sm:max-w-[260px] cursor-pointer"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="group flex flex-col w-[200px] sm:w-[230px] p-4 bg-white border border-slate-100 hover:border-blue-500 hover:shadow-lg transition-all cursor-pointer h-full relative"
       onClick={() => {
         import('./api/client.js').then(({ apiClient }) => {
           apiClient.post('/analytics/track', { eventType: 'product_click', productId: product.id }).catch(() => {});
@@ -50,78 +57,65 @@ const ProductCard = ({ product }) => {
         window.location.hash = `#product?id=${product.id}`;
       }}
     >
-      {/* Image Container */}
-      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100 mb-4">
+      <div className="absolute top-2 right-2 z-10">
+        <Heart className="w-5 h-5 text-slate-300 hover:text-red-500 hover:fill-red-500 transition-colors" />
+      </div>
+
+      <div className="w-full aspect-[4/5] overflow-hidden bg-white mb-4 flex items-center justify-center p-2">
         <img 
           src={product.image} 
           alt={product.name}
-          className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+          className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
         />
-        
-        {/* Top Badges / Icons */}
-        <div className="absolute top-3 right-3 flex flex-col gap-2">
-          <button 
-            onClick={(e) => { e.stopPropagation(); setIsFavorite(!isFavorite); }}
-            className="p-2 rounded-full bg-white/90 backdrop-blur-sm shadow-sm hover:bg-white hover:scale-110 transition-all text-slate-700"
-          >
-            <Heart className={cn("w-4 h-4", isFavorite && "fill-red-500 text-red-500")} />
-          </button>
-        </div>
-
-        {/* Quick Add Button (Visible on Hover) */}
-        <div className={cn(
-          "absolute bottom-0 left-0 right-0 p-3 translate-y-full opacity-0 transition-all duration-300 ease-out",
-          "group-hover:translate-y-0 group-hover:opacity-100"
-        )}>
-          <button className="w-full py-2.5 bg-white/95 backdrop-blur text-sm font-semibold text-slate-900 rounded-xl shadow-lg hover:bg-slate-900 hover:text-white transition-colors flex items-center justify-center gap-2">
-            <Plus className="w-4 h-4" /> Quick Add
-          </button>
-        </div>
       </div>
 
-      {/* Product Details */}
-      <div className="flex flex-col gap-1 px-1">
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase">{product.brand}</span>
-          <div className="flex items-center gap-1 text-slate-700">
-            <Star className="w-3.5 h-3.5 fill-current" />
-            <span className="text-xs font-medium">{product.rating}</span>
-            <span className="text-xs text-slate-400">({product.reviews})</span>
-          </div>
+      <div className="flex flex-col flex-1">
+        <div className="text-sm font-bold text-slate-500 truncate mb-1">{product.brand}</div>
+        <div className="text-sm text-slate-800 truncate mb-2 group-hover:text-blue-600 transition-colors">
+          {product.name}
         </div>
         
-        <h3 className="text-sm font-medium text-slate-900 leading-snug truncate">
-          {product.name}
-        </h3>
-        
-        <div className="mt-1 flex items-center gap-2">
-          <span className="text-sm font-semibold text-slate-900">₹{product.price.toFixed(2)}</span>
+        {/* Rating Badge */}
+        <div className="flex items-center gap-2 mb-2">
+          <div className="flex items-center gap-1 bg-green-600 text-white px-1.5 py-0.5 rounded text-[11px] font-bold">
+            {product.rating} <Star className="w-3 h-3 fill-current" />
+          </div>
+          <span className="text-xs text-slate-500 font-medium">({product.reviews})</span>
+        </div>
+
+        {/* Pricing */}
+        <div className="flex items-end gap-2 mt-auto">
+          <span className="text-base font-bold text-slate-900">₹{product.price.toFixed(0)}</span>
+          <span className="text-sm text-slate-500 line-through">₹{originalPrice}</span>
+          <span className="text-sm font-bold text-green-600">{discount}% off</span>
         </div>
       </div>
     </div>
   );
 };
 
-const ProductCarousel = ({ title, products }) => {
+const FlipkartCarousel = ({ title, products, subtitle }) => {
+  if (!products || products.length === 0) return null;
   return (
-    <section className="py-8">
-      <div className="flex items-center justify-between px-6 md:px-12 mb-6">
-        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">{title}</h2>
-        <button className="hidden sm:flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors">
-          See All <ChevronRight className="w-4 h-4 ml-1" />
+    <section className="bg-white shadow-sm mb-2">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+        <div>
+          <h2 className="text-xl font-bold text-slate-900">{title}</h2>
+          {subtitle && <p className="text-sm text-slate-500 mt-0.5">{subtitle}</p>}
+        </div>
+        <button className="bg-blue-600 text-white px-4 py-1.5 rounded-sm font-semibold text-sm hover:bg-blue-700 transition-colors shadow-sm">
+          VIEW ALL
         </button>
       </div>
       
       <div className="relative">
-        <div className="flex gap-4 sm:gap-6 px-6 md:px-12 overflow-x-auto snap-x hide-scrollbar pb-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="flex overflow-x-auto hide-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {products.map((product, idx) => (
-            <div key={`${product.id}-${idx}`} className="snap-start">
-              <ProductCard product={product} />
+            <div key={`${product.id}-${idx}`} className="shrink-0 border-r border-slate-100 last:border-r-0">
+              <FlipkartCard product={product} />
             </div>
           ))}
-          {/* Spacer for right padding on scroll */}
-          <div className="min-w-[24px] sm:min-w-[48px] shrink-0" />
         </div>
       </div>
     </section>
@@ -129,103 +123,88 @@ const ProductCarousel = ({ title, products }) => {
 };
 
 // --- Main Page ---
-import { useEffect } from 'react';
-import { apiClient } from './api/client.js';
-
 export default function HomePage() {
   const [searchFocused, setSearchFocused] = useState(false);
-  const [missionDismissed, setMissionDismissed] = useState(false);
   
   // Real data state
   const [feedData, setFeedData] = useState(null);
+  const [allProducts, setAllProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchFeed = async () => {
+    const fetchData = async () => {
       // Log page view
       apiClient.post('/analytics/track', { eventType: 'page_view' }).catch(() => {});
       
-      // Fetch from backend /api/v1/recommendations/home
-      const data = await apiClient.get('/recommendations/home');
-      if (data) {
-        setFeedData(data);
+      try {
+        const [recommendations, productsRes] = await Promise.all([
+          apiClient.get('/recommendations/home'),
+          apiClient.get('/products')
+        ]);
+
+        if (recommendations) setFeedData(recommendations);
+        if (productsRes && productsRes.products) {
+          setAllProducts(productsRes.products.map(item => ({
+            id: item._id,
+            name: item.title,
+            brand: item.brand,
+            price: item.price,
+            rating: item.rating || (4 + Math.random()).toFixed(1),
+            reviews: item.reviewCount || Math.floor(Math.random() * 500) + 50,
+            image: item.images?.[0]
+          })));
+        }
+      } catch (error) {
+        console.error("Error fetching homepage data:", error);
       }
       setIsLoading(false);
     };
-    fetchFeed();
+    fetchData();
   }, []);
 
   // Extract products from sections array
   const getSectionProducts = (type) => {
-    return feedData?.sections?.find(s => s.type === type)?.products || null;
+    const products = feedData?.sections?.find(s => s.type === type)?.products;
+    return products?.map(item => ({
+      id: item._id,
+      name: item.title,
+      brand: item.brand,
+      price: item.price,
+      rating: item.rating || (4 + Math.random()).toFixed(1),
+      reviews: item.reviewCount || Math.floor(Math.random() * 500) + 50,
+      image: item.images?.[0]
+    })) || [];
   };
 
-  // Use dummy data as fallback if backend is slow/failing for the demo
-  const displayProducts = getSectionProducts('recommended')?.map(item => ({
-    id: item._id,
-    name: item.title,
-    brand: item.brand,
-    price: item.price,
-    rating: 4.8,
-    reviews: 120,
-    image: item.images?.[0] || DUMMY_PRODUCTS[0].image
-  })) || DUMMY_PRODUCTS;
-
-  const exploreProducts = getSectionProducts('explore')?.map(item => ({
-    id: item._id,
-    name: item.title,
-    brand: item.brand,
-    price: item.price,
-    rating: 4.5,
-    reviews: 80,
-    image: item.images?.[0] || DUMMY_PRODUCTS[0].image
-  })) || DUMMY_PRODUCTS;
-
-  const newArrivals = getSectionProducts('trending')?.map(item => ({
-    id: item._id,
-    name: item.title,
-    brand: item.brand,
-    price: item.price,
-    rating: 4.9,
-    reviews: 30,
-    image: item.images?.[0] || DUMMY_PRODUCTS[0].image
-  })) || DUMMY_PRODUCTS;
+  const recommended = getSectionProducts('recommended');
+  const trending = getSectionProducts('trending');
+  const explore = getSectionProducts('explore');
 
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen bg-[#f1f3f6] font-sans selection:bg-blue-100 selection:text-blue-900">
       
-      {/* 1. NAVIGATION */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-12 h-16 flex items-center justify-between gap-4">
+      {/* 1. FLIPKART STYLE HEADER */}
+      <header className="sticky top-0 z-50 bg-blue-600 text-white shadow-md">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-6">
           
-          {/* Left: Logo & Mobile Menu */}
+          {/* Left: Logo */}
           <div className="flex items-center gap-4">
-            <button className="md:hidden p-2 -ml-2 text-slate-600">
-              <Menu className="w-5 h-5" />
-            </button>
-            <a href="#home" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center">
-                <ShoppingBag className="w-4 h-4" />
-              </div>
-              <span className="hidden sm:block text-xl font-bold tracking-tight text-slate-900">
-                Discover
+            <button className="md:hidden p-1"><Menu className="w-6 h-6" /></button>
+            <a href="#home" className="flex items-center gap-1 flex-col justify-center italic font-bold">
+              <span className="text-xl tracking-tight leading-none">Discover</span>
+              <span className="text-[10px] text-yellow-400 leading-none flex items-center">
+                Explore Plus <Zap className="w-3 h-3 fill-current ml-0.5" />
               </span>
             </a>
           </div>
 
           {/* Center: Search Bar */}
-          <div className="flex-1 max-w-2xl hidden md:flex">
-            <div className={cn(
-              "relative w-full transition-all duration-300",
-              searchFocused ? "shadow-md rounded-full bg-white ring-1 ring-blue-600" : "bg-slate-100 rounded-full"
-            )}>
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <Search className={cn("w-4 h-4", searchFocused ? "text-blue-600" : "text-slate-400")} />
-              </div>
+          <div className="flex-1 max-w-3xl hidden md:flex">
+            <div className="relative w-full bg-white rounded-sm shadow-sm flex items-center overflow-hidden h-9">
               <input 
                 type="text" 
-                placeholder="Search products, brands, or describe what you need..."
-                className="w-full bg-transparent border-none pl-11 pr-4 py-2.5 text-sm focus:outline-none focus:ring-0 text-slate-900 placeholder:text-slate-500"
+                placeholder="Search for products, brands and more"
+                className="w-full bg-transparent border-none px-4 text-sm focus:outline-none focus:ring-0 text-slate-900 placeholder:text-slate-500 h-full"
                 onFocus={() => setSearchFocused(true)}
                 onBlur={() => setSearchFocused(false)}
                 onKeyDown={(e) => {
@@ -234,141 +213,112 @@ export default function HomePage() {
                   }
                 }}
               />
+              <button className="px-4 h-full bg-white flex items-center justify-center">
+                <Search className="w-5 h-5 text-blue-600" />
+              </button>
             </div>
           </div>
 
           {/* Right: Actions */}
-          <div className="flex items-center gap-1 sm:gap-2">
-            <button className="md:hidden p-2 text-slate-600">
-              <Search className="w-5 h-5" />
+          <div className="flex items-center gap-6 font-medium text-sm">
+            <button className="hidden md:block bg-white text-blue-600 px-8 py-1 rounded-sm shadow-sm font-bold">
+              Login
             </button>
-            <IconButton icon={Heart} />
-            <IconButton icon={User} />
-            <IconButton icon={ShoppingBag} badge="3" />
+            <a href="#" className="hidden md:flex items-center hover:text-yellow-400">
+              Become a Seller
+            </a>
+            <a href="#" className="hidden md:flex items-center gap-1 hover:text-yellow-400">
+              <span className="font-semibold">More</span> <ChevronRight className="w-4 h-4 rotate-90" />
+            </a>
+            <a href="#" className="flex items-center gap-2 hover:text-yellow-400 relative">
+              <ShoppingCart className="w-5 h-5" />
+              <span className="hidden sm:inline font-semibold">Cart</span>
+              <span className="absolute -top-1.5 -left-2 bg-yellow-500 text-slate-900 text-[10px] font-bold px-1.5 rounded-full">
+                3
+              </span>
+            </a>
           </div>
-
         </div>
       </header>
 
-      <main className="max-w-[1600px] mx-auto pb-24">
+      {/* 2. TOP CATEGORIES */}
+      <TopCategoryBar />
+
+      <main className="max-w-[1600px] mx-auto pb-24 px-2 sm:px-4">
         
-        {/* 2. HERO BANNER */}
-        <section className="px-4 sm:px-6 md:px-12 pt-8 pb-4">
-          <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[480px] rounded-[24px] sm:rounded-[32px] overflow-hidden bg-slate-900 flex items-center">
-            {/* Background Image / Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-transparent z-10" />
+        {/* 3. HERO BANNER CAROUSEL (Simplified) */}
+        <section className="mb-2">
+          <div className="w-full h-[200px] sm:h-[280px] bg-indigo-900 cursor-pointer flex items-center relative shadow-sm overflow-hidden group">
             <img 
-              src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1600&q=80" 
-              className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay"
-              alt="Hero Promotion"
+              src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1600&q=80" 
+              className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50"
+              alt="Sale Banner"
             />
-            
-            {/* Content */}
-            <div className="relative z-20 px-8 md:px-16 max-w-2xl">
-              <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-semibold text-white tracking-widest uppercase mb-4">
-                New Collection
-              </span>
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1] mb-6">
-                Defy limits. <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-                  Elevate performance.
-                </span>
-              </h1>
-              <p className="text-sm sm:text-lg text-slate-300 mb-8 max-w-md font-medium">
-                Discover the latest premium activewear designed for peak performance and ultimate comfort.
-              </p>
-              <button className="bg-white text-slate-900 px-8 py-3.5 rounded-full font-semibold text-sm hover:bg-slate-100 hover:scale-105 transition-all shadow-xl">
-                Shop Collection
+            <div className="relative z-10 px-12 text-white max-w-xl">
+              <h2 className="text-4xl font-extrabold italic tracking-tight mb-2">BIG DIWALI SALE</h2>
+              <p className="text-xl font-semibold mb-4 text-yellow-400">Up to 80% Off on Top Brands</p>
+              <button className="bg-yellow-400 text-slate-900 px-6 py-2 font-bold text-sm rounded-sm hover:bg-yellow-500">
+                SHOP NOW
               </button>
             </div>
           </div>
         </section>
 
-        {/* 3. SHOPPING MISSION CARD (Subtle AI Insight) */}
-        {!missionDismissed && (
-          <section className="px-4 sm:px-6 md:px-12 py-2">
-            <div className="group relative flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 sm:p-5 bg-gradient-to-r from-slate-50 to-white rounded-2xl border border-slate-200 shadow-sm transition-all hover:shadow-md">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-50 text-blue-600 shrink-0">
-                  <Target className="w-5 h-5" />
+        {/* 4. CAROUSELS */}
+        {isLoading ? (
+          <div className="py-8 text-center text-slate-500 font-medium">Loading amazing deals...</div>
+        ) : (
+          <>
+            <FlipkartCarousel 
+              title="Deals of the Day" 
+              subtitle="Grab them before they are gone"
+              products={trending} 
+            />
+            
+            {feedData?.intentContext?.dominantCategory && (
+              <FlipkartCarousel 
+                title={`Based on your interest in ${feedData.intentContext.dominantCategory}`} 
+                subtitle="Recommended just for you"
+                products={recommended} 
+              />
+            )}
+            
+            {!feedData?.intentContext?.dominantCategory && (
+              <FlipkartCarousel 
+                title="Recommended For You" 
+                subtitle="Based on your recent activity"
+                products={recommended} 
+              />
+            )}
+
+            <FlipkartCarousel 
+              title="Explore Top Brands" 
+              products={explore} 
+            />
+          </>
+        )}
+
+        {/* 5. ALL PRODUCTS GRID */}
+        {!isLoading && allProducts.length > 0 && (
+          <section className="mt-4">
+            <div className="bg-white shadow-sm mb-2 px-6 py-4 border-b border-slate-100">
+              <h2 className="text-xl font-bold text-slate-900">Discover More Products</h2>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 bg-white">
+              {allProducts.map((product) => (
+                <div key={product.id} className="border-b border-r border-slate-100 last:border-r-0">
+                  <FlipkartCard product={product} />
                 </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Current Context</span>
-                    <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
-                      <Sparkles className="w-3 h-3" /> {feedData?.metrics?.candidateCount ? 'AI Generated' : '94% Match'}
-                    </span>
-                  </div>
-                  <h3 className="text-base font-semibold text-slate-900 mt-0.5">
-                    {feedData?.intentContext?.dominantCategory || "Fitness & Training Journey"}
-                  </h3>
-                </div>
-              </div>
-              
-              <div className="mt-4 sm:mt-0 flex items-center gap-3 w-full sm:w-auto">
-                <p className="text-sm text-slate-500 hidden lg:block mr-4">
-                  We've tailored today's recommendations to your active lifestyle.
-                </p>
-                <button className="flex-1 sm:flex-none px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors shadow-sm">
-                  Refine Preferences
-                </button>
-                <button 
-                  onClick={() => setMissionDismissed(true)}
-                  className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
-                  aria-label="Dismiss"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
+              ))}
+            </div>
+            
+            {/* Load More Fake Button */}
+            <div className="bg-white p-4 flex justify-center border-t border-slate-100">
+               <button className="text-blue-600 font-semibold px-12 py-3 border border-blue-200 rounded-sm hover:bg-blue-50 transition-colors">
+                  Load More Products
+               </button>
             </div>
           </section>
-        )}
-
-        {/* 4. RECOMMENDED FOR YOU */}
-        {isLoading ? (
-          <div className="px-12 py-8 animate-pulse flex gap-6">
-             <div className="w-64 h-80 bg-slate-100 rounded-2xl"></div>
-             <div className="w-64 h-80 bg-slate-100 rounded-2xl"></div>
-             <div className="w-64 h-80 bg-slate-100 rounded-2xl"></div>
-          </div>
-        ) : (
-          <ProductCarousel 
-            title="Recommended For You" 
-            products={displayProducts} 
-          />
-        )}
-
-        {/* Promotional Break */}
-        <section className="px-4 sm:px-6 md:px-12 py-8">
-          <div className="w-full bg-slate-50 rounded-3xl border border-slate-100 p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="max-w-xl">
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3 tracking-tight">
-                Unlock Premium Member Benefits
-              </h2>
-              <p className="text-slate-500 text-sm sm:text-base leading-relaxed">
-                Join Discover Engine Pro for free expedited shipping, early access to new drops, and highly curated personal styling sessions tailored by our AI engine.
-              </p>
-            </div>
-            <button className="shrink-0 bg-slate-900 text-white px-8 py-4 rounded-xl font-semibold text-sm hover:bg-slate-800 transition-colors shadow-lg w-full md:w-auto">
-              Join For Free
-            </button>
-          </div>
-        </section>
-
-        {/* 8. EXPLORE MORE */}
-        {!isLoading && (
-          <ProductCarousel 
-            title="Explore More Categories" 
-            products={exploreProducts} 
-          />
-        )}
-
-        {/* 9. NEW ARRIVALS */}
-        {!isLoading && (
-          <ProductCarousel 
-            title="Fresh Drops & New Arrivals" 
-            products={newArrivals} 
-          />
         )}
 
       </main>
