@@ -38,6 +38,30 @@ const RELATED_PRODUCTS = [
   { id: 104, name: "Hydration Flask 32oz", brand: "Aqua", price: 35.00, rating: 4.6, reviews: 56, image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&q=80" },
 ];
 
+const COMPLEMENTARY_CATEGORIES = {
+  'smartphones': ['laptops', 'lighting', 'automotive'],
+  'laptops': ['smartphones', 'furniture', 'lighting'],
+  'fragrances': ['skincare', 'womens-jewellery', 'womens-watches'],
+  'skincare': ['fragrances', 'womens-jewellery', 'womens-dresses'],
+  'groceries': ['home-decoration', 'furniture'],
+  'home-decoration': ['furniture', 'lighting'],
+  'furniture': ['home-decoration', 'lighting'],
+  'tops': ['womens-shoes', 'womens-bags', 'womens-jewellery', 'womens-watches'],
+  'womens-dresses': ['womens-shoes', 'womens-bags', 'womens-jewellery', 'womens-watches'],
+  'womens-shoes': ['tops', 'womens-dresses', 'womens-bags', 'womens-jewellery'],
+  'mens-shirts': ['mens-shoes', 'mens-watches', 'sunglasses'],
+  'mens-shoes': ['mens-shirts', 'mens-watches', 'sunglasses'],
+  'mens-watches': ['mens-shirts', 'mens-shoes', 'sunglasses'],
+  'womens-watches': ['tops', 'womens-dresses', 'womens-jewellery', 'womens-bags'],
+  'womens-bags': ['tops', 'womens-dresses', 'womens-shoes', 'womens-watches'],
+  'womens-jewellery': ['tops', 'womens-dresses', 'womens-watches', 'fragrances'],
+  'sunglasses': ['mens-shirts', 'mens-shoes', 'womens-dresses', 'tops'],
+  'automotive': ['motorcycle', 'lighting'],
+  'motorcycle': ['automotive'],
+  'lighting': ['home-decoration', 'furniture']
+};
+
+
 // --- Sub Components ---
 const IconButton = ({ icon: Icon, badge, className }) => (
   <button className={cn("relative p-2 rounded-full hover:bg-slate-100 transition-colors text-slate-700", className)}>
@@ -213,8 +237,21 @@ export default function ProductDetailsPage() {
         if (allData && allData.products) {
            let lookFiltered = allData.products;
            if (fetchedProduct && fetchedProduct.category) {
-             // Exclude the current category to get complementary items (like water bottles, socks for shoes)
-             lookFiltered = lookFiltered.filter(p => p.category !== fetchedProduct.category && p._id !== fetchedProduct._id);
+             const currentCategory = fetchedProduct.category.toLowerCase();
+             const complementary = COMPLEMENTARY_CATEGORIES[currentCategory];
+             
+             if (complementary && complementary.length > 0) {
+               // Include only items from complementary categories
+               lookFiltered = lookFiltered.filter(p => complementary.includes(p.category.toLowerCase()));
+               
+               // If somehow we don't have enough matching complementary items, fallback to everything else
+               if (lookFiltered.length < 4) {
+                 lookFiltered = allData.products.filter(p => p.category !== fetchedProduct.category && p._id !== fetchedProduct._id);
+               }
+             } else {
+               // Fallback if no specific mapping exists
+               lookFiltered = lookFiltered.filter(p => p.category !== fetchedProduct.category && p._id !== fetchedProduct._id);
+             }
            }
            
            lookFiltered.sort(() => 0.5 - Math.random());
